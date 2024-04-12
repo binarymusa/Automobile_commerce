@@ -8,3 +8,8 @@ The file covers an Automobile e-comerce site built using flask.
       REQUIREMENTS FILES(contains file dependencies)
       and a RUN.PY file for firing up the app
       
+Codes to run the app.
+
+    python run.py or python3 run.py
+    using a wsgi server such as gunicorn with nginx :
+        gunicorn -w 4 -b 0.0.0.8000 run:app
