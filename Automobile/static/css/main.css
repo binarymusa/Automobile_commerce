@@ -1,0 +1,83 @@
+
+.nav-item a{
+    color: black;
+    
+}
+.cust-m{
+    margin-left: 3%;
+}
+.cust-m2{
+    margin-right: 30%;
+}
+.progress-bar{
+   animation: fillWidht 10s linear forwards;
+}
+@keyframes fillWidht {
+
+    0%{
+        width: 0%;
+    }
+    25%{
+        width: 20%;
+    }
+    30%{
+        width: 30%;
+    }
+    40%{
+        width: 40%;
+    }
+    50%{
+        width: 50%;
+    }
+    60%{
+        width: 60%;
+    }
+    70%{
+        width: 75%;
+    }
+    80%{
+        width: 80%;
+    }
+    90%{
+        width: 90%;
+    }
+    100%{
+        width: 100%;
+    }
+
+}
+
+#shadow h4 strong{
+    text-shadow: 0 0 2px  #f0f8ff; /* Horizontal offset, vertical offset, blur radius, and color */
+}
+#bmw{
+    height: 100vh; width: 10%;
+    writing-mode: vertical-rl; /* vertical right-to-left */
+    text-orientation: upright; /* Ensures the text orientation is upright */
+    background: #f0f8ff;
+    text-shadow: 0 0 2px  #f0f8ff;
+    /* background-size: 100% 100%;
+    background-repeat: no-repeat; */
+}
+#merc{
+    background: #f0f8ff;
+    height: 100vh; width: 10%;
+    writing-mode: vertical-rl; /* vertical right-to-left */
+    text-orientation: upright; 
+    
+    /* background-size: 100% 100%;
+    background-repeat: no-repeat; */
+    
+}
+#audi{
+    background: #f0f8ff;
+    height: 100vh; width: 10%;
+    writing-mode: vertical-rl; /* vertical right-to-left */
+    text-orientation: upright; 
+    text-shadow: 0 0 2px  #78bbf5;
+    /* background-size: 100% 100%;
+    background-repeat: no-repeat; */
+}
+#bmw h4, #merc h4, #audi h4{
+    text-shadow: 0 0 1px  #04533cd0;
+}

@@ -1,0 +1,98 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Market_page
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex  font-monospace ">
+    <!-- left fixed bar -->
+        <div class="col-lg-2 col-12  mb-3 ml-5 my-1 rounded-3 text-center py-5" id="fix"  style="left: 0;  background: #f0f8ff; ">
+            <nav class="position-fixed ">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a  class="nav-link" href="#bmw_section">
+                            <strong>BMW</strong>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a  class="nav-link" href="#mercedes_section">
+                            <strong>MERCEDES</strong>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#audi_section">
+                            <strong>AUDI</strong>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="my-5 mx-5">
+                    <a class="rounded bg-success text-white nav-link mx-1" href="{{url_for('cart_page')}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="antiquewhite" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                          </svg>
+                        <strong>Cart</strong>
+                    </a>
+                </div>
+
+            </nav>
+
+        </div>
+        
+        <!-- middle fixed bar -->
+        <div class="col-lg-10 col-12 text-white text-center bg-dark" >
+            <div class="my-3 " id="bmw_section">
+                <h4><strong>BMW</strong></h4>
+                <div class="container-fluid row">
+                    <div class="col-2 mx-3 text-dark"  id="bmw" >
+                        <h4 >BAVARIAN MOTOR WORKS</h4>
+                    </div>
+
+                    <div class="col">
+                       
+                  </div>
+                </div>
+            
+            </div>
+
+            <div class="my-3 " id="mercedes_section" >
+                <h4><strong>MERCEDES</strong></h4>
+                <div class="container-fluid row">
+                    <div class="col-2 mx-3 text-dark"  id="merc">
+                        <h4>MERCEDES BENZ</h4>
+                    </div>
+
+                    <div class="col">
+                        
+                  </div>
+                </div>
+                
+                
+            </div>
+
+            <div class="my-3 " id="audi_section">
+                <h4><strong>AUDI</strong></h4>
+                <div class="container-fluid row">
+                    <div class="col-2 mx-3 text-dark"  id="audi"  >
+                        <h4>AUDI</h4>
+                    </div>
+
+                    <div class="">
+                        
+                  </div>
+                </div>
+                
+            </div>
+
+        </div>
+        
+</div>
+    
+
+{% endblock %}
+
