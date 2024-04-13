@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(length=30), nullable=False, unique=True)
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
-    budget = db.Column(db.Integer(), nullable=False, default=10000000) # defines the code to the default budget money
+    budget = db.Column(db.Integer(), nullable=False, default=1000000) # defines the code to the default budget money
     
 
     items = db.relationship('Vehicles', backref='owned_user', lazy=True)
@@ -40,16 +40,7 @@ class User(db.Model, UserMixin):
     # check if a provided plain-text password matches the hashed password stored in the "password_hash" column
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
-    
-    """ def check_email_validity(self, email_address):
-        email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-    
-        # Check if the provided email matches the pattern
-        if re.match(email_regex, email_address):
-            return True
-        else:
-            return False """
-            
+               
    
 
 # data contained in the server's database

@@ -39,7 +39,6 @@ def signup_page():
       email = request.form['email']
       password = request.form['password']
          
-
       existing_user = User.query.filter((User.username == username) | (User.email_address == email)).first()
       
       if existing_user:
