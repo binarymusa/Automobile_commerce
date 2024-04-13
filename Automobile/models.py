@@ -2,6 +2,8 @@
 from Automobile import db,login_manager
 from Automobile import bcrypt
 from flask_login import UserMixin
+import re
+
 
 # tells Flask-Login that the function (load_user) should be used to retrieve a user object when a user is logged in and their session needs to be managed.
 @login_manager.user_loader
@@ -39,6 +41,15 @@ class User(db.Model, UserMixin):
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
     
+    """ def check_email_validity(self, email_address):
+        email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    
+        # Check if the provided email matches the pattern
+        if re.match(email_regex, email_address):
+            return True
+        else:
+            return False """
+            
    
 
 # data contained in the server's database

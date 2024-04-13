@@ -16,8 +16,10 @@ def login_page():
 
       if check_user and check_user.check_password_correction(attempted_password=password):
          login_user(check_user) 
+         flash(f'Login successful', category='success')
          return redirect(url_for('welcome_page'))
       else:
+         flash(f'Username and Password  mismatch', category='danger')
          return redirect(url_for('login_page'))
   
    else:
@@ -41,7 +43,7 @@ def signup_page():
       existing_user = User.query.filter((User.username == username) | (User.email_address == email)).first()
       
       if existing_user:
-         # return f'user already exists'
+         flash(f'User already exists. Try different credentials',category='danger')
          return redirect(url_for('signup_page'))
       else:
          # Add the new user to the database
@@ -50,7 +52,7 @@ def signup_page():
          db.session.commit()
 
       login_user(new_user)
-      
+      flash(f'signup successful', category='success')
       # Redirect to a success page or do whatever you want after signup
       return redirect(url_for('welcome_page'))
    else:

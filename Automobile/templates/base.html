@@ -19,6 +19,7 @@
 
 <body>
     
+    
     {% if current_user.is_authenticated %}
         <nav class="navbar navbar-expand-md bg-dark">
 
@@ -85,6 +86,7 @@
         </nav>
 
     {% else %}
+
         <nav class="navbar navbar-expand-md bg-dark">
 
             <div class="container-fluid ">
@@ -137,6 +139,20 @@
         </nav>
     {% endif %}
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{category}}">
+                    <button type="button" class="m1-2 mb-1 close" data-bs-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                    
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <main class="font-monospace">
         {% block content %}
 
@@ -144,6 +160,7 @@
     </main>
 
     <script src="{{ url_for('static', filename='javascript/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascript/message.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
 
