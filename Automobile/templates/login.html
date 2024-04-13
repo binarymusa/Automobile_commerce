@@ -11,7 +11,7 @@
             <a class="navbar-brand text-success" href="#">Automobile</a>
             <h2>Login Form</h2>
             <!-- onsubmit="return validateForm()" -->
-            <form id="loginForm" >
+            <form id="loginForm" method="post" action="{{url_for('login_page')}}">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
 
@@ -27,21 +27,7 @@
                 <input type="submit" value="Login">
             </form>
         </div>
-
-        <!-- <script>
-            function validateForm() {
-                var username = document.getElementById("username").value;
-                var password = document.getElementById("password").value;
-
-                // Simple validation
-                if (username === "" || password === "") {
-                    alert("Please enter both username and password");
-                    return false;
-                }
-                return true;
-            }
-        </script> -->
-    
+   
         
     </body>
 {% endblock %}

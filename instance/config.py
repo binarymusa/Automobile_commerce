@@ -4,9 +4,7 @@
     also hold the secret key used wit form validations
 """
 
-import os
-
 class Config:
-    SECRET_KEY = '89cf297f4b4634754cd052c1'
+    SECRET_KEY = 'c7c52ced176b65114f3e211f'
     SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://MUSTAFA:5m9l<18>_X!@localhost/Automobile'
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True

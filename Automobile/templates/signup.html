@@ -8,14 +8,14 @@
 
 <body class="bd">
 
-    <div id="container">
+    <div id="container" >
         <a class="navbar-brand text-success" href="#">Automobile</a>
         <h2>Signup Form</h2>
         <!-- onsubmit="return validateForm()" -->
-        <form id="signupForm" >
+        <form id="signupForm" method="post" action="{{ url_for('signup_page') }}">
             <label for="username">Username:</label>
             <!-- required property -->
-            <input type="text" id="username" name="username"required > 
+            <input  type="text" id="username" name="username"required > 
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
@@ -32,21 +32,6 @@
             <input type="submit" value="Signup">
         </form>
     </div>
-
-    <!-- <script>
-        function validateForm() {
-            var username = document.getElementById("username").value;
-            var email = document.getElementById("email").value;
-            var password = document.getElementById("password").value;
-
-            // Simple validation
-            if (username === "" || email === "" || password === "") {
-                alert("Please enter all fields");
-                return false;
-            }
-            return true;
-        }
-    </script> -->
 
     </body>
 
