@@ -4,19 +4,20 @@ from flask import redirect, url_for, render_template, flash, session,request
 from flask_login import login_user, logout_user, login_required, current_user
 
 
-
 @app.route('/')
+@app.route('/login_page')
+def login_page():
+   return render_template('login.html')
+
+
 @app.route('/welcome_page')
 def welcome_page():
    return render_template('Welcome.html')
 
 
-@app.route('/login_page')
-def login_page():
-   return render_template('login.html')
-
 @app.route('/sign_up_page')
 def signup_page():
+   
    return render_template('signup.html')
 
 @app.route('/market_page', methods=['POST', 'GET'])

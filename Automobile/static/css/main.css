@@ -82,3 +82,37 @@
     text-shadow: 0 0 1px  #04533cd0;
     
 }
+
+.bd{
+    background: rgb(39, 38, 38);
+    font-family: monospace;
+}
+
+#container {
+    width: 300px;
+    margin: 10vh auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+input[type="text"], input[type="email"], input[type="password"], input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+

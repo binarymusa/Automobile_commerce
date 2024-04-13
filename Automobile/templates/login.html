@@ -1,0 +1,48 @@
+
+{% extends 'base2.html' %}
+{% block title %}
+    Login_page
+{% endblock %}
+
+{% block content %}
+    <body class="bd">
+
+        <div id="container">
+            <a class="navbar-brand text-success" href="#">Automobile</a>
+            <h2>Login Form</h2>
+            <!-- onsubmit="return validateForm()" -->
+            <form id="loginForm" >
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <P><Strong>No account?</Strong></P>
+                <!-- <button class="btn btn-secondary text-white" id="btn-1">Signup</button> -->
+                <a class="btn bg-secondary text-white" href="{{url_for('signup_page')}}">
+                    Signup
+                </a>
+
+                <input type="submit" value="Login">
+            </form>
+        </div>
+
+        <!-- <script>
+            function validateForm() {
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+
+                // Simple validation
+                if (username === "" || password === "") {
+                    alert("Please enter both username and password");
+                    return false;
+                }
+                return true;
+            }
+        </script> -->
+    
+        
+    </body>
+{% endblock %}
+
