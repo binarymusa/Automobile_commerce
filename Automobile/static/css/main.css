@@ -47,6 +47,25 @@
 
 }
 
+#key{
+    animation: rotateOnce 2s linear 5 forwards;
+}
+@keyframes rotateOnce {
+
+    0%{
+        color: rgb(206, 209, 208);
+    }
+    
+    
+    100%{
+        color: #037209;
+        text-align: right;
+        
+    }
+
+}
+
+
 #shadow h4 strong{
     text-shadow: 0 0 2px  #f0f8ff; /* Horizontal offset, vertical offset, blur radius, and color */
 }

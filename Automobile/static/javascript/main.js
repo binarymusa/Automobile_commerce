@@ -7,3 +7,4 @@ progressBar.addEventListener('animationend', () => {
 });
 
 
+

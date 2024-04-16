@@ -5,6 +5,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from Automobile.models import User, Vehicles
 
 
+
 @app.route('/')
 @app.route('/login_page', methods=['GET', 'POST'])
 def login_page():
@@ -16,14 +17,29 @@ def login_page():
 
       if check_user and check_user.check_password_correction(attempted_password=password):
          login_user(check_user) 
-         flash(f'Login successful', category='success')
-         return redirect(url_for('welcome_page'))
+
+         if check_user.role and check_user.role.role_name == 'Admin':
+            flash(f'Admin Login successful', category='success')
+            return redirect(url_for('admin_welcome'))
+         else:
+            flash(f'Login successfull', category='success')
+            return redirect(url_for('welcome_page'))
       else:
          flash(f'Username and Password  mismatch', category='danger')
          return redirect(url_for('login_page'))
   
    else:
       return render_template('login.html')
+
+
+
+@app.route('/Admin_page')
+def admin_page():
+   return render_template('admin.html')
+
+@app.route('/Admin_welcome_page')
+def admin_welcome():
+   return render_template('welcome_adm.html')
 
 
 @app.route('/welcome_page')
@@ -45,6 +61,7 @@ def signup_page():
          flash(f'User already exists. Try different credentials',category='danger')
          return redirect(url_for('signup_page'))
       else:
+         
          # Add the new user to the database
          new_user = User(username=username, email_address=email, password=password)
          db.session.add(new_user)
@@ -56,6 +73,7 @@ def signup_page():
       return redirect(url_for('welcome_page'))
    else:
       return render_template('signup.html')
+
 
 @app.route('/market_page', methods=['POST', 'GET'])
 # @login_required

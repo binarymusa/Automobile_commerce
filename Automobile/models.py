@@ -13,17 +13,20 @@ def load_user(user_id):
 # data fetched from the user
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer(), primary_key=True) # primary-key column named id
+    user_role = db.Column(db.Integer(), db.ForeignKey('roles.id'))
+
     username = db.Column(db.String(length=30), nullable=False, unique=True)
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
     budget = db.Column(db.Integer(), nullable=False, default=1000000) # defines the code to the default budget money
     
-
+    role = db.relationship('Roles', backref='users')
     items = db.relationship('Vehicles', backref='owned_user', lazy=True)
 
     @property
     def prettier_budget(self):
         if len(str(self.budget)) >= 4:
+            # unfinished items here
             return f'{self.budget}'
         else:
             return f"{self.budget}"
@@ -40,7 +43,11 @@ class User(db.Model, UserMixin):
     # check if a provided plain-text password matches the hashed password stored in the "password_hash" column
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
-               
+
+class Roles(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    role_name = db.Column(db.String(length=30), nullable=False, unique=True)
+
    
 
 # data contained in the server's database
