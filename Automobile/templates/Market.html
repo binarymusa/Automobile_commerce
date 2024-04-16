@@ -9,7 +9,7 @@
 
 <div class="d-flex  font-monospace ">
     <!-- left fixed bar -->
-        <div class="col-lg-2 col-12  mb-3 ml-5 my-1 rounded-3 text-center py-5" id="fix"  style="left: 0;  background: #f0f8ff; ">
+        <div class="col-lg-2 col-12  mb-3 ml-5 my-1 rounded text-center py-5" id="fix"  style="left: 0;  ">
             <nav class="position-fixed ">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -25,10 +25,16 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#audi_section">
-                            <strong>AUDI</strong>
+                        <a class="nav-link" href="#rover_section">
+                            <strong>RANGEROVER</strong>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="#audi_section">
+                          <strong>AUDI</strong>
+                      </a>
+                  </li>
                 </ul>
 
                 <div class="my-5 mx-5">
@@ -49,11 +55,57 @@
             <div class="my-3 " id="bmw_section">
                 <h4><strong>BMW</strong></h4>
                 <div class="container-fluid row">
-                    <div class="col-2 mx-3 text-dark"  id="bmw" >
+                    <div class="col-2 mx-3 text-white"  id="bmw" >
                         <h4>BAVARIAN MOTOR WORKS</h4>
                     </div>
 
-                    <div class="col">
+                    <div class="col ">
+                        <div class="mt-1" style="height: 72vh;border-bottom: 3px solid white">
+                            <div id="carouselExampleControls" class="m-1 carousel-fade" data-bs-ride="carousel">
+                                <div class="carousel-inner p-1">
+                                  <div class="carousel-item active">
+                                    <img class="d-lg-block w-100  rounded-3"  src="static/images/bmwm4_01.jpg" style="height: 70vh;">
+                                  </div>
+                                  
+                                  <div class="carousel-item">
+                                    <img class="d-lg-block w-100  rounded-3" src="static/images/bmw_6.jpg" style="height: 70vh;">
+                                  </div>
+                                  <div class="carousel-item">
+                                    <img class="d-lg-block w-100  rounded-3" src="static/images/bmw_09.jpg" style="height: 70vh;">
+                                  </div>          
+                                </div>
+                              </div>
+                        </div>
+
+                        <div class=" mt-1">
+                          <div class="row">                          
+                            {% for vehicle in bmw %}
+                            <!-- always add the incluudes file right after the loop -->
+                              {% include 'includes/purchase.html' %} 
+                              <div class="col-md-4">
+                                <div class="booking-cards w-100  my-2 text-white rounded mx-auto " style="background: #5a5555"  >
+                              
+                                  <div class="booking-card text-center py-3">
+                                      <p><strong>model:</strong> {{ vehicle.model }}</p>
+                                      <p><strong>description:</strong> {{ vehicle.description }}</p>
+                                      <p><strong>price:</strong> ${{ vehicle.price }}</p>
+
+                                      <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{ vehicle.id }}">
+                                        Purchase
+                                     </button>
+                                      
+                                  </div>
+                                </div>
+                              </div>
+                                                                        
+                              {% if loop.index % 3 == 0 %}
+                                </div> <div class="row">
+                              {% endif %}
+                        
+                            {% endfor %}
+                            
+
+                        </div>
                        
                   </div>
                 </div>
@@ -63,33 +115,182 @@
             <div class="my-3 " id="mercedes_section" >
                 <h4><strong>MERCEDES</strong></h4>
                 <div class="container-fluid row">
-                    <div class="col-2 mx-3 text-dark"  id="merc">
+                    <div class="col-2 mx-3 text-white"  id="merc">
                         <h4>MERCEDES BENZ</h4>
                     </div>
 
-                    <div class="col">
-                        
+                    <div class="col ">
+                        <div class="mt-1" style="height: 72vh; border-bottom: 3px solid white">
+                            <div id="carouselExampleControls" class="m-1 carousel-fade" data-bs-ride="carousel">
+                                <div class="carousel-inner p-1">
+                                  <div class="carousel-item active">
+                                    <img class="d-lg-block w-100  rounded-3"  src="static/images/benz_01.jpg" style="height: 70vh;">
+                                  </div>
+                                  
+                                  <div class="carousel-item">
+                                    <img class="d-lg-block w-100  rounded-3" src="static/images/benz_03.jpg" style="height: 70vh;">
+                                  </div>
+                                  <div class="carousel-item">
+                                    <img class="d-lg-block w-100  rounded-3" src="static/images/g-wagon_01.jpg" style="height: 70vh;">
+                                  </div>          
+                                </div>
+                              </div>
+                        </div>
+
+                        <div class=" mt-1">
+                          <div class="row ">                         
+                            {% for vehicle in mercedes %}
+                              {% include 'includes/purchase.html' %}
+                              <div class="col-md-4">
+                                <div class="booking-cards w-100 my-2 text-white rounded mx-auto " style="background: #5a5555" >
+                              
+                                  <div class="booking-card text-center py-3">
+                                      <p><strong>model:</strong> {{ vehicle.model }}</p>
+                                      <p><strong>description:</strong> {{ vehicle.description }}</p>
+                                      <p><strong>price:</strong> ${{ vehicle.price }}</p>
+
+                                      <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{vehicle.id}}">
+                                        Purchase
+                                      </button>
+                                      
+                                  </div>
+                                </div>
+                              </div>
+                                         
+                              {% if loop.index % 3 == 0 %}
+                                </div> <div class="row">
+                              {% endif %}
+                              
+                            {% endfor %}
+                            
+                        </div>
                   </div>
                 </div>
                 
                 
             </div>
 
-            <div class="my-3 " id="audi_section">
-                <h4><strong>AUDI</strong></h4>
+            <div class="my-3 " id="rover_section">
+                <h4><strong>RANGEROVER</strong></h4>
                 <div class="container-fluid row">
-                    <div class="col-2 mx-3 text-dark"  id="audi"  >
-                        <h4>AUDI</h4>
+                    <div class="col-2 mx-3 text-white"  id="audi"  >
+                        <h4>RANGEROVER</h4>
                     </div>
 
-                    <div class="">
-                        
+                    <div class="col">
+                        <div class="mt-1" style="height: 72vh; border-bottom: 3px solid white">
+                            <div id="carouselExampleControls" class="m-1 carousel-fade" data-bs-ride="carousel">
+                                <div class="carousel-inner p-1">
+                                  <div class="carousel-item active">
+                                    <img class="d-lg-block w-100  rounded-3"  src="static/images/range_01.jpg" style="height: 70vh;">
+                                  </div>
+                                  
+                                  <div class="carousel-item">
+                                    <img class="d-lg-block w-100  rounded-3" src="static/images/range_02.jpg" style="height: 70vh;">
+                                  </div>
+                                  <div class="carousel-item">
+                                    <img class="d-lg-block w-100  rounded-3" src="static/images/range_03.jpg" style="height: 70vh;">
+                                  </div>          
+                                </div>
+                              </div>
+                        </div>
+
+                        <div class="mt-1">
+                          <div class="row">
+                            {% for vehicle in rover %}
+                              {% include 'includes/purchase.html' %}
+                              <div class="col-md-4">
+                                <div class="booking-cards w-100 my-2 text-white rounded mx-auto " style="background: #5a5555" >
+                              
+                                  <div class="booking-card text-center py-3 ">
+                                      <p><strong>model:</strong> {{ vehicle.model }}</p>
+                                      <p><strong>description:</strong> {{ vehicle.description }}</p>
+                                      <p><strong>price:</strong> ${{ vehicle.price }}</p>
+                                      
+                                     
+                                      <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{vehicle.id}}">
+                                        Purchase
+                                     </button>
+                                     
+
+                                  </div>
+                                </div>                                
+                              </div>                              
+
+                              {% if loop.index % 3 == 0 %} <!-- Check if three vehicles have been displayed -->
+                                </div><div class="row"> <!-- Close the current row and start a new one -->
+                                  
+                              {% endif %}
+                              
+                            {% endfor %}                            
+                                                    
+                        </div>
                   </div>
                 </div>
                 
             </div>
 
         </div>
+
+        <div class="my-3 " id="audi_section">
+          <h4><strong>AUDI</strong></h4>
+          <div class="container-fluid row">
+              <div class="col-2 mx-3 text-white"  id="bmw" >
+                  <h4>AUDI</h4>
+              </div>
+
+              <div class="col ">
+                  <div class="mt-1" style="height: 72vh;border-bottom: 3px solid white">
+                      <div id="carouselExampleControls" class="m-1 carousel-fade" data-bs-ride="carousel">
+                          <div class="carousel-inner p-1">
+                            <div class="carousel-item active">
+                              <img class="d-lg-block w-100  rounded-3"  src="static/images/audi_03.jpg" style="height: 70vh;">
+                            </div>
+                            
+                            <div class="carousel-item">
+                              <img class="d-lg-block w-100  rounded-3" src="static/images/audi_04.jpg" style="height: 70vh;">
+                            </div>
+                            <div class="carousel-item">
+                              <img class="d-lg-block w-100  rounded-3" src="static/images/audi_09.jpg" style="height: 70vh;">
+                            </div>          
+                          </div>
+                        </div>
+                  </div>
+
+                  <div class=" mt-1">
+                    <div class="row">                          
+                      {% for vehicle in audi %}
+                      <!-- always add the incluudes file right after the loop -->
+                        {% include 'includes/purchase.html' %} 
+                        <div class="col-md-4">
+                          <div class="booking-cards w-100  my-2 text-white rounded mx-auto " style="background: #5a5555"  >
+                        
+                            <div class="booking-card text-center py-3">
+                                <p><strong>model:</strong> {{ vehicle.model }}</p>
+                                <p><strong>description:</strong> {{ vehicle.description }}</p>
+                                <p><strong>price:</strong> ${{ vehicle.price }}</p>
+
+                                <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{ vehicle.id }}">
+                                  Purchase
+                               </button>
+                                
+                            </div>
+                          </div>
+                        </div>
+                                                                  
+                        {% if loop.index % 3 == 0 %}
+                          </div> <div class="row">
+                        {% endif %}
+                  
+                      {% endfor %}
+                      
+
+                  </div>
+                 
+            </div>
+          </div>
+      
+      </div>
         
 </div>
     

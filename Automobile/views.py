@@ -34,6 +34,7 @@ def login_page():
 
 
 @app.route('/Admin_page')
+@login_required
 def admin_page():
    return render_template('admin.html')
 
@@ -76,13 +77,18 @@ def signup_page():
 
 
 @app.route('/market_page', methods=['POST', 'GET'])
-# @login_required
+@login_required
 def market_page():
-   return render_template('Market.html')
+   mercedes = Vehicles.query.filter_by(car_type='mercedes').all()
+   bmw = Vehicles.query.filter_by(car_type='bmw').all()
+   rover = Vehicles.query.filter_by(car_type='rangerover').all()
+   audi = Vehicles.query.filter_by(car_type='audi').all()
+
+   return render_template('Market.html', mercedes=mercedes,bmw=bmw,rover=rover,audi=audi)
 
 
 @app.route('/mycart_page')
-# @login_required
+@login_required
 def cart_page():
    return render_template('Cart.html')
 

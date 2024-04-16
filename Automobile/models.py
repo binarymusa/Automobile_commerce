@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
     budget = db.Column(db.Integer(), nullable=False, default=1000000) # defines the code to the default budget money
     
     role = db.relationship('Roles', backref='users')
-    items = db.relationship('Vehicles', backref='owned_user', lazy=True)
+    vehicle = db.relationship('Vehicles', backref='owned_user', lazy=True)
 
     @property
     def prettier_budget(self):
@@ -53,12 +53,18 @@ class Roles(db.Model):
 # data contained in the server's database
 class Vehicles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
-    model = db.Column(db.String(length=30), nullable=False, unique=True)
-    price = db.Column(db.Integer(), nullable=False)
-    Dealership = db.Column(db.String(length=12), nullable=False, unique=True)
+    model = db.Column(db.String(length=60), nullable=False, unique=False)
+    price = db.Column(db.Integer(), nullable=False) 
     description = db.Column(db.String(length=1024), nullable=False)
+    car_type = db.Column(db.String(length=30), unique=False)
    
-
     owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+
+   
+    def buy(self):
+        pass
+
+    def sell(self):
+        pass
     
     

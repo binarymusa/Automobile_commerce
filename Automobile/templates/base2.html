@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         {% block title %}
-
+            Base page2
         {% endblock %}
     </title>
 
@@ -19,7 +19,7 @@
     
     {% if current_user.is_authenticated %}
         <nav class="navbar-expand bg-dark pt-3 px-4">
-            <div class="container-fluid  p-2 rounded bg-white font-monospace row">
+            <div class="container-fluid  p-2 rounded bg-white font-monospace row mx-auto">
                 <div class="col-10">
                     <a class="navbar-brand text-success mx-2" href="#" style="font-size:20px" id="auto">Automobile</a>
                 </div>
@@ -33,7 +33,7 @@
     
     {% else %}
         <nav class="navbar-expand bg-dark pt-3 px-4">
-            <div class="container-fluid  p-2 rounded bg-white font-monospace row">
+            <div class="container-fluid  p-2 rounded bg-white font-monospace row mx-auto">
                 <div class="col-10">
                     <a class="navbar-brand text-success mx-2" href="#" style="font-size:20px" id="auto">Automobile</a>
                 </div>
