@@ -1,13 +1,13 @@
 
 <!-- modal.html -->
-<div class="modal fade" id="purchaseModal{{ vehicle.id }}" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+<div class="modal fade " id="purchaseModal{{ vehicle.id }}" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content  text-white" style="background: #928f8f;">
         <div class="modal-header">
-          <h5 class="modal-title text-dark" id="purchaseModalLabel{{ vehicle.id }}">Purchase Confirmation</h5>
+          <h5 class="modal-title " id="purchaseModalLabel{{ vehicle.id }}">Purchase Confirmation</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body text-dark">
+        <div class="modal-body">
         
           Are you sure you want to purchase <br> {{vehicle.model}} ? for <br> ${{vehicle.price}}
         </div>

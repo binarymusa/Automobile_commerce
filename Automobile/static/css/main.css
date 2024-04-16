@@ -13,7 +13,6 @@
    animation: fillWidht 10s linear forwards;
 }
 @keyframes fillWidht {
-
     0%{
         width: 0%;
     }
@@ -51,20 +50,14 @@
     animation: rotateOnce 2s linear 5 forwards;
 }
 @keyframes rotateOnce {
-
     0%{
         color: rgb(206, 209, 208);
-    }
-    
-    
+    }    
     100%{
         color: #037209;
-        text-align: right;
-        
+        text-align: right; 
     }
-
 }
-
 
 #shadow h4 strong{
     text-shadow: 0 0 2px  #f0f8ff; /* Horizontal offset, vertical offset, blur radius, and color */
@@ -75,18 +68,15 @@
     text-orientation: upright; /* Ensures the text orientation is upright */
     background: #928f8fb6;
     text-shadow: 0 0 2px  #f0f8ff;
-
 }
 
 #bmw h4, #merc h4, #audi h4{
-    text-shadow: 0 0 1px  #04533cd0;
-    
+    text-shadow: 0 0 1px  #04533cd0;    
 }
 
 .bd{
     background: rgb(39, 38, 38);
     font-family: monospace;
-    
 }
 
 #container {
