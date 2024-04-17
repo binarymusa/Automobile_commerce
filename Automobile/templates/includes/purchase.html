@@ -1,5 +1,5 @@
 
-<!-- modal.html -->
+<!-- purchase_modal.html -->
 <div class="modal fade " id="purchaseModal{{ vehicle.id }}" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content  text-white" style="background: #928f8f;">
@@ -25,4 +25,34 @@
       </div>
     </div>
   </div>
-  
+
+
+<!-- cart_modal.html -->
+<div class="modal fade " id="cartModal{{ vehicle.id }}" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content  text-white" style="background: #928f8f;">
+      <div class="modal-header">
+        <h5 class="modal-title " id="purchaseModalLabel{{ vehicle.id }}">Add to cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">          
+          Are you sure you want to add to cart ?<br>
+          model: {{vehicle.model}} <br>
+          description: {{vehicle.description}} <br>
+          price: ${{vehicle.price}}
+                 
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        
+        <form method="post" action="{{url_for('market_page')}}">
+          <input id="added_vehicle" name="added_vehicle" type="hidden" value="{{vehicle.id}}">
+          <button type="submit" class="btn btn-primary">Add to cart</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

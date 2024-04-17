@@ -50,6 +50,26 @@ class User(db.Model, UserMixin):
     def can_sell(self, vehicle_obj):
         return vehicle_obj in self.vehicle
     
+
+
+    #function to dissasociate a user with a car
+    @staticmethod
+    def dissasociate_user_car(user_id):
+        user = User.query.get(user_id)
+
+        if user:
+            # Disassociate all vehicles owned by the user
+            vehicles_owned_by_user = Vehicles.query.filter_by(owner=user.id).all()
+            
+            for vehicle in vehicles_owned_by_user:
+                vehicle.owner = None
+            db.session.commit()
+            
+            return True
+        else:
+            return False
+
+    # function to dissasociate a user with a car before deleting them
     @staticmethod
     def delete_user(user_id):
         user = User.query.get(user_id)
@@ -70,26 +90,30 @@ class User(db.Model, UserMixin):
             return False
 
 
-
+# maps user roles
 class Roles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     role_name = db.Column(db.String(length=30), nullable=False, unique=True)
 
    
 
-# data contained in the server's database
+# Vehhicles as contained in the server's database
 class Vehicles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     model = db.Column(db.String(length=60), nullable=False, unique=False)
     price = db.Column(db.Integer(), nullable=False) 
     description = db.Column(db.String(length=1024), nullable=False)
     car_type = db.Column(db.String(length=30), unique=False)
+    # car_units = db.Column(db.Integer(), nullable=False, unique=False)
    
     owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
 
    
     def __repr__(self):
         return f'Item {self.model}'
+    
+    def add_to_cart(self, user):
+        pass
 
     def buy(self, user):
         self.owner = user.id

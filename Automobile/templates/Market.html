@@ -90,6 +90,10 @@
                                       <p><strong>description:</strong> {{ vehicle.description }}</p>
                                       <p><strong>price:</strong> ${{ vehicle.price }}</p>
 
+                                      <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ vehicle.id }}">
+                                        Cart +
+                                      </button>                                      
+
                                       <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{ vehicle.id }}">
                                         Purchase
                                      </button>
@@ -149,6 +153,10 @@
                                       <p><strong>description:</strong> {{ vehicle.description }}</p>
                                       <p><strong>price:</strong> ${{ vehicle.price }}</p>
 
+                                      <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ vehicle.id }}">
+                                        Cart +
+                                      </button>
+
                                       <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{vehicle.id}}">
                                         Purchase
                                       </button>
@@ -207,7 +215,10 @@
                                       <p><strong>description:</strong> {{ vehicle.description }}</p>
                                       <p><strong>price:</strong> ${{ vehicle.price }}</p>
                                       
-                                     
+                                      <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ vehicle.id }}">
+                                        Cart +
+                                      </button>
+
                                       <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{vehicle.id}}">
                                         Purchase
                                      </button>
@@ -270,9 +281,14 @@
                                 <p><strong>description:</strong> {{ vehicle.description }}</p>
                                 <p><strong>price:</strong> ${{ vehicle.price }}</p>
                                 
+                                <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ vehicle.id }}">
+                                  Cart +
+                               </button>
+
                                 <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{ vehicle.id }}">
                                   Purchase
                                </button>
+
                                 
                             </div>
                           </div>
