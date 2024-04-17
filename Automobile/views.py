@@ -22,7 +22,7 @@ def login_page():
             flash(f'Admin Login successful', category='success')
             return redirect(url_for('admin_welcome'))
          else:
-            flash(f'Login successfull', category='success')
+            flash(f'Login successful', category='success')
             return redirect(url_for('welcome_page'))
       else:
          flash(f'Username and Password  mismatch', category='danger')
@@ -88,15 +88,16 @@ def market_page():
    if request.method == 'POST':
       item = request.form['purchased_vehicle']
       selected_item = Vehicles.query.filter_by(id=item).first()
-     
-      if selected_item:
+           
+      if selected_item and selected_item.owner == None:
          if current_user.can_purchase(selected_item):
             selected_item.buy(current_user)
             flash('purchase was successful', category='success')
             return redirect(url_for('cart_page'))
          else:
             flash('you dont enough money to make purchase')
-      
+      else:
+         flash('Vehicle currently unavailable', category='danger')
 
    return render_template('Market.html', mercedes=mercedes,bmw=bmw,rover=rover,audi=audi)
 
@@ -104,9 +105,9 @@ def market_page():
 @app.route('/mycart_page')
 @login_required
 def cart_page():
-   # my_purchase = Vehicles.query.filter_by(id=current_user).first()
+   my_purchase = Vehicles.query.filter_by(owner=current_user.id).all()
 
-   return render_template('Cart.html')
+   return render_template('Cart.html', my_purchase=my_purchase)
 
 
 @app.route('/logout')

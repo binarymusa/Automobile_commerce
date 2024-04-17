@@ -49,6 +49,26 @@ class User(db.Model, UserMixin):
     
     def can_sell(self, vehicle_obj):
         return vehicle_obj in self.vehicle
+    
+    @staticmethod
+    def delete_user(user_id):
+        user = User.query.get(user_id)
+
+        if user:
+            # Disassociate all vehicles owned by the user
+            vehicles_owned_by_user = Vehicles.query.filter_by(owner=user.id).all()
+            
+            for vehicle in vehicles_owned_by_user:
+                vehicle.owner = None
+            db.session.commit()
+            
+            # Now you can safely delete the user
+            db.session.delete(user)
+            db.session.commit()
+            return True
+        else:
+            return False
+
 
 
 class Roles(db.Model):

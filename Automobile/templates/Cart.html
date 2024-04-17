@@ -7,9 +7,26 @@
 
 {% block content %}
 
-    <div class="container-fluid bg-dark text-white">
-        <h4><strong>Items on your cart</strong></>
+    <div class="container-fluid bg-dark text-white pb-1 ">
+        <h4><strong>My Purchase</strong></>
+            <div class="row  p-1">
+                {% for item in my_purchase %}
+                    <div class="col-md-4 mx-auto">
+                        <div class="booking-cards  mb-1 text-white text-dark rounded  border " >
+                            <div class="booking-card text-center py-3">
+                                <p><strong>model:</strong> {{ item.model }}</p>
+                                <p><strong>description:</strong> {{ item.description }}</p>
+                                <p><strong>car_type:</strong> {{ item.car_type }}</p>                
+                            </div>  
+                        </div>
+                            
+                    </div>
 
+                    {% if loop.index % 2 == 0 %}
+                        </div> <div class="row">
+                    {% endif %}
+                                
+                {% endfor %}                                 
     </div>
 
 {% endblock %}
