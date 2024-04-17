@@ -76,7 +76,7 @@ def signup_page():
       return render_template('signup.html')
 
 
-@app.route('/market_page', methods=['POST', 'GET'])
+@app.route('/market_page', methods=['GET', 'POST'])
 @login_required
 def market_page():
    mercedes = Vehicles.query.filter_by(car_type='mercedes').all()
@@ -84,12 +84,28 @@ def market_page():
    rover = Vehicles.query.filter_by(car_type='rangerover').all()
    audi = Vehicles.query.filter_by(car_type='audi').all()
 
+   
+   if request.method == 'POST':
+      item = request.form['purchased_vehicle']
+      selected_item = Vehicles.query.filter_by(id=item).first()
+     
+      if selected_item:
+         if current_user.can_purchase(selected_item):
+            selected_item.buy(current_user)
+            flash('purchase was successful', category='success')
+            return redirect(url_for('cart_page'))
+         else:
+            flash('you dont enough money to make purchase')
+      
+
    return render_template('Market.html', mercedes=mercedes,bmw=bmw,rover=rover,audi=audi)
 
 
 @app.route('/mycart_page')
 @login_required
 def cart_page():
+   # my_purchase = Vehicles.query.filter_by(id=current_user).first()
+
    return render_template('Cart.html')
 
 

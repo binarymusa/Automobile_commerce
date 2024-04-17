@@ -43,6 +43,13 @@ class User(db.Model, UserMixin):
     # check if a provided plain-text password matches the hashed password stored in the "password_hash" column
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
+    
+    def can_purchase(self, vehicle_obj):
+        return self.budget >= vehicle_obj.price
+    
+    def can_sell(self, vehicle_obj):
+        return vehicle_obj in self.vehicle
+
 
 class Roles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -61,10 +68,17 @@ class Vehicles(db.Model):
     owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
 
    
-    def buy(self):
-        pass
+    def __repr__(self):
+        return f'Item {self.model}'
 
-    def sell(self):
-        pass
+    def buy(self, user):
+        self.owner = user.id
+        user.budget -= self.price
+        db.session.commit()
+
+    # def sell(self, user):
+    #     self.owner = None
+    #     user.budget += self.price
+    #     db.session.commit()
     
     

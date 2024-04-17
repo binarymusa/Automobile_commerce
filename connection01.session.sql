@@ -25,12 +25,11 @@ SET car_type =
     END
 WHERE id IN ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
 
-
-
-
 */
 
+--  USE Automobile;
 SELECT * FROM vehicles
+
 
 
 

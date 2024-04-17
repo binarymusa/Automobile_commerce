@@ -12,7 +12,7 @@
         <a class="navbar-brand text-success" href="#">Automobile</a>
         <h2>Signup Form</h2>
         <!-- onsubmit="return validateForm()" -->
-        <form id="signupForm" method="post" action="{{ url_for('signup_page') }}">
+        <form id="signupForm" method="POST" action="{{url_for('signup_page')}}">
             <label for="username">Username:</label>
             <!-- required property -->
             <input  type="text" id="username" name="username"required > 
