@@ -32,15 +32,25 @@ def login_page():
       return render_template('login.html')
 
 
-
-@app.route('/Admin_page')
-@login_required
-def admin_page():
-   return render_template('admin.html')
-
 @app.route('/Admin_welcome_page')
 def admin_welcome():
    return render_template('welcome_adm.html')
+
+@app.route('/Admin_page', methods=['GET' , 'POST'])
+@login_required
+def admin_page():
+   users = User.query.filter(User.id != 6).all()
+   
+   if request.method == 'POST':
+      user_to_delete = request.form['user_delete']
+
+      if user_to_delete:
+        User.delete_user(user_to_delete)
+
+        flash('user deletion confirmed', category='danger')
+        return redirect(url_for('admin_page'))  
+
+   return render_template('admin.html', users =users, )
 
 
 @app.route('/welcome_page')
@@ -84,30 +94,56 @@ def market_page():
    rover = Vehicles.query.filter_by(car_type='rangerover').all()
    audi = Vehicles.query.filter_by(car_type='audi').all()
 
+   combined_items = zip(mercedes, bmw, rover, audi)
+
    
    if request.method == 'POST':
-      item = request.form['purchased_vehicle']
-      selected_item = Vehicles.query.filter_by(id=item).first()
-           
-      if selected_item and selected_item.owner == None:
-         if current_user.can_purchase(selected_item):
-            selected_item.buy(current_user)
-            flash('purchase was successful', category='success')
+      item = request.form.get('purchased_vehicle')  #['purchased_vehicle']
+      item2 = request.form.get('added_vehicle') #['added_vehicle']
+      
+      if item:
+         selected_item = Vehicles.query.filter_by(id=item).first()
+         
+         if selected_item and selected_item.owner == None:
+            if current_user.can_purchase(selected_item):
+               selected_item.buy(current_user)
+               flash('purchase was successful', category='success')
+               return redirect(url_for('purchases_page'))
+            else:
+               flash('you dont enough money to make purchase')
+         else:
+            flash('Vehicle currently unavailable', category='danger')
+
+      elif item2:
+         selected_item = Vehicles.query.filter_by(id=item2).first()
+
+         if selected_item and selected_item.owner == None:
+            # Add logic to add the item to the cart
+            selected_item.add_to_cart(current_user)
+            
+            flash('Item added to cart', category='success')
             return redirect(url_for('cart_page'))
          else:
-            flash('you dont enough money to make purchase')
-      else:
-         flash('Vehicle currently unavailable', category='danger')
+            flash('Vehicle currently unavailable', category='danger')
 
-   return render_template('Market.html', mercedes=mercedes,bmw=bmw,rover=rover,audi=audi)
+      
+   return render_template('Market.html', mercedes=mercedes,bmw=bmw,rover=rover,audi=audi, combined_items = combined_items)
 
 
 @app.route('/mycart_page')
 @login_required
 def cart_page():
+   my_cart = Vehicles.query.filter_by(owner=current_user.id).all()
+
+   return render_template('Cart.html', my_cart=my_cart )
+
+@app.route('/my_purchases_page')
+@login_required
+def purchases_page():
    my_purchase = Vehicles.query.filter_by(owner=current_user.id).all()
 
-   return render_template('Cart.html', my_purchase=my_purchase)
+
+   return render_template('purchased.html', my_purchase=my_purchase)
 
 
 @app.route('/logout')

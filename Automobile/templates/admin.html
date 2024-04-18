@@ -1,13 +1,57 @@
 
 {% extends 'base3.html' %}
 {% block title %}
-
+    admin_page
 {% endblock %}
 
 {% block content %}
 
-    <nav>
+    <div class="bg-dark text-white text-center">
+
+        <h4 >Current users in system</h4>
+        <div>
+            <table class="container table table-bordered table-striped w-50">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Email</th>                                              
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for user in users %}
+                    {% include 'includes/update_user.html' %}
+                   
+                    <tr class="text-center">
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email_address }}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#deleteUserModal{{user.id}}">
+                                Delete
+                            </button>                           
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div>
+                
+                <button type="button" class="btn btn-success mb-2" id="addUser">
+                    Add user
+                </button> 
+               
+            </div>
+            
+        </div>
         
-    </nav>
+        <div class="container-fluid">
+            <h4>User Purchases and cart items</h4>
+        </div>
+        
+    </body>
 
 {% endblock %}

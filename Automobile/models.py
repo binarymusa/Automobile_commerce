@@ -50,11 +50,9 @@ class User(db.Model, UserMixin):
     def can_sell(self, vehicle_obj):
         return vehicle_obj in self.vehicle
     
-
-
     #function to dissasociate a user with a car
     @staticmethod
-    def dissasociate_user_car(user_id):
+    def dissasociate_user_car(user_id):        
         user = User.query.get(user_id)
 
         if user:
@@ -63,6 +61,8 @@ class User(db.Model, UserMixin):
             
             for vehicle in vehicles_owned_by_user:
                 vehicle.owner = None
+
+            user.budget = 1000000
             db.session.commit()
             
             return True
@@ -96,7 +96,6 @@ class Roles(db.Model):
     role_name = db.Column(db.String(length=30), nullable=False, unique=True)
 
    
-
 # Vehhicles as contained in the server's database
 class Vehicles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -113,7 +112,8 @@ class Vehicles(db.Model):
         return f'Item {self.model}'
     
     def add_to_cart(self, user):
-        pass
+        self.owner = user.id
+        db.session.commit()
 
     def buy(self, user):
         self.owner = user.id
