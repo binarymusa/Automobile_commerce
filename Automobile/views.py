@@ -2,7 +2,7 @@
 from Automobile import app,db
 from flask import redirect, url_for, render_template, flash, session,request
 from flask_login import login_user, logout_user, login_required, current_user
-from Automobile.models import User, Vehicles
+from Automobile.models import User, Vehicles, Cart, PurchasedItems
 
 
 
@@ -18,6 +18,7 @@ def login_page():
       if check_user and check_user.check_password_correction(attempted_password=password):
          login_user(check_user) 
 
+         #  Access the associated role object via the role relationship
          if check_user.role and check_user.role.role_name == 'Admin':
             flash(f'Admin Login successful', category='success')
             return redirect(url_for('admin_welcome'))
@@ -39,7 +40,10 @@ def admin_welcome():
 @app.route('/Admin_page', methods=['GET' , 'POST'])
 @login_required
 def admin_page():
-   users = User.query.filter(User.id != 6).all()
+   # checks for users with roles other than 1 and null roles and pass them to query for display
+   # '|' - represents or operator
+   users = User.query.filter((User.user_role != 1) | (User.user_role == None)).all()
+   
    
    if request.method == 'POST':
       user_to_delete = request.form['user_delete']
@@ -50,6 +54,7 @@ def admin_page():
         flash('user deletion confirmed', category='danger')
         return redirect(url_for('admin_page'))  
 
+   print(users)  # Add this line for troubleshooting
    return render_template('admin.html', users =users, )
 
 
@@ -66,7 +71,7 @@ def signup_page():
       email = request.form['email']
       password = request.form['password']
          
-      existing_user = User.query.filter((User.username == username) | (User.email_address == email)).first()
+      existing_user = User.query.filter((User.username == username) & (User.email_address == email)).first()
       
       if existing_user:
          flash(f'User already exists. Try different credentials',category='danger')
@@ -94,9 +99,7 @@ def market_page():
    rover = Vehicles.query.filter_by(car_type='rangerover').all()
    audi = Vehicles.query.filter_by(car_type='audi').all()
 
-   combined_items = zip(mercedes, bmw, rover, audi)
-
-   
+     
    if request.method == 'POST':
       item = request.form.get('purchased_vehicle')  #['purchased_vehicle']
       item2 = request.form.get('added_vehicle') #['added_vehicle']
@@ -104,7 +107,7 @@ def market_page():
       if item:
          selected_item = Vehicles.query.filter_by(id=item).first()
          
-         if selected_item and selected_item.owner == None:
+         if selected_item:
             if current_user.can_purchase(selected_item):
                selected_item.buy(current_user)
                flash('purchase was successful', category='success')
@@ -116,8 +119,8 @@ def market_page():
 
       elif item2:
          selected_item = Vehicles.query.filter_by(id=item2).first()
-
-         if selected_item and selected_item.owner == None:
+       
+         if selected_item:
             # Add logic to add the item to the cart
             selected_item.add_to_cart(current_user)
             
@@ -127,23 +130,68 @@ def market_page():
             flash('Vehicle currently unavailable', category='danger')
 
       
-   return render_template('Market.html', mercedes=mercedes,bmw=bmw,rover=rover,audi=audi, combined_items = combined_items)
+   return render_template('Market.html', mercedes=mercedes,bmw=bmw,rover=rover,audi=audi)
 
 
-@app.route('/mycart_page')
+@app.route('/mycart_page', methods=['GET', 'POST'])
 @login_required
 def cart_page():
-   my_cart = Vehicles.query.filter_by(owner=current_user.id).all()
+   my_cart = Cart.query.filter_by(user_id=current_user.id).all()
 
-   return render_template('Cart.html', my_cart=my_cart )
+   # Initialize a list to store the details of each vehicle in the cart
+   cart_vehicle_details = []
+
+   # Iterate over each item in the cart and retrieve the details of the associated vehicle
+   for item in my_cart:
+      vehicle = item.vehicle  # Access the associated vehicle object via the relationship
+      # Add the details of the vehicle to the list
+      cart_vehicle_details.append({
+         'id': vehicle.id,
+         'model': vehicle.model,
+         'price': vehicle.price,
+         'description': vehicle.description,
+         'car_type': vehicle.car_type,
+        
+      })
+
+      if request.method == 'POST':
+         item = request.form.get('buy_added_vehicle')
+
+         if item:            
+            selected_item = Cart.query.filter_by(id=item).first()
+
+            if current_user.can_purchase(selected_item):
+               selected_item.buy(current_user)
+               flash('purchase was successful', category='success')
+               return redirect(url_for('purchases_page'))
+            else:
+               flash('you dont enough money to make purchase')
+
+
+   return render_template('Cart.html', cart_vehicle_details=cart_vehicle_details)
 
 @app.route('/my_purchases_page')
 @login_required
 def purchases_page():
-   my_purchase = Vehicles.query.filter_by(owner=current_user.id).all()
+   my_purchase = PurchasedItems.query.filter_by(user_id=current_user.id).all()
 
+   # Initialize a list to store the details of each vehicle in the cart
+   purchased_vehicle_details = []
 
-   return render_template('purchased.html', my_purchase=my_purchase)
+   # Iterate over each item in the cart and retrieve the details of the associated vehicle
+   for item in my_purchase:
+      vehicle = item.vehicle  # Access the associated vehicle object via the relationship
+      # Add the details of the vehicle to the list
+      purchased_vehicle_details.append({
+         'id': vehicle.id,
+         'model': vehicle.model,
+         'price': vehicle.price,
+         'description': vehicle.description,
+         'car_type': vehicle.car_type,
+        
+      })
+
+   return render_template('purchased.html', purchased_vehicle_details=purchased_vehicle_details)
 
 
 @app.route('/logout')

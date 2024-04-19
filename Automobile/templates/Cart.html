@@ -7,10 +7,11 @@
 
 {% block content %}
 
-    <div class="container-fluid bg-dark text-white pb-1 ">
+    <div class="container-fluid bg-dark text-white pb-1 font-monospace">
         <h4><strong>My Cart</strong></>
             <div class="row  p-1">
-                {% for item in my_cart %}
+                {% for item in cart_vehicle_details %}
+                    {% include 'includes/cart_modal.html' %}
                                 
                     <div class="col-md-4 mx-auto">
                         <div class="booking-cards  mb-1 text-white text-dark rounded  border " >
@@ -20,10 +21,16 @@
                                 <p><strong>car_type:</strong> {{ item.car_type }}</p>         
                                 <p><strong>price:</strong> ${{ item.price }}</p> 
                                 
-                               
+                                <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#removeModal{{ item.id }}">
+                                    Cart -
+                                </button>
+
+                                <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ item.id }}">
+                                    Purchase
+                                </button>
                             </div>  
                         </div>
-                            
+
                     </div>
 
                     {% if loop.index % 3 == 0 %}

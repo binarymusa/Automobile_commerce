@@ -1,0 +1,55 @@
+
+<!-- purchase -->
+<div class="modal fade " id="cartModal{{ item.id }}" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content  text-white text-monospace" style="background: #928f8f;">
+        <div class="modal-header">
+          <h5 class="modal-title " id="cartModalLabel{{ item.id }}">Add to cart</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <div class="modal-body">          
+            Are you sure you want to purchase {{item.model}} ? for  ${{item.price}}
+                   
+        </div>
+  
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+          <form method="post" action="{{url_for('market_page')}}">
+            <input id="buy_added_vehicle" name="buy_added_vehicle" type="hidden" value="{{item.id}}">
+            <button type="submit" class="btn btn-primary">Purchase</button>
+          </form>
+  
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<!-- remove from cart -->
+<div class="modal fade " id="removeModal{{ item.id }}" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content  text-white text-monospace" style="background: #928f8f;">
+        <div class="modal-header">
+            <h5 class="modal-title " id="removeModalLabel{{ item.id }}">Add to cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">          
+            remove item from cart
+                    
+        </div>
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            
+            <form method="post" action="{{url_for('market_page')}}">
+            <input id="remove_added_vehicle" name="remove_added_vehicle" type="hidden" value="{{item.id}}">
+            <button type="submit" class="btn btn-primary">Purchase</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>

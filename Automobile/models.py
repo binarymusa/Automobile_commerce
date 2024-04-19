@@ -15,13 +15,15 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer(), primary_key=True) # primary-key column named id
     user_role = db.Column(db.Integer(), db.ForeignKey('roles.id'))
 
-    username = db.Column(db.String(length=30), nullable=False, unique=True)
+    username = db.Column(db.String(length=30), nullable=False)
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
     budget = db.Column(db.Integer(), nullable=False, default=1000000) # defines the code to the default budget money
     
     role = db.relationship('Roles', backref='users')
-    vehicle = db.relationship('Vehicles', backref='owned_user', lazy=True)
+    cart_relationship = db.relationship('Cart', backref='users', lazy=True)
+    purchased_relationship = db.relationship('PurchasedItems', backref='users', lazy=True)
+    # vehicle = db.relationship('Vehicles', backref='owned_user', lazy=True)
 
     @property
     def prettier_budget(self):
@@ -50,6 +52,21 @@ class User(db.Model, UserMixin):
     def can_sell(self, vehicle_obj):
         return vehicle_obj in self.vehicle
     
+
+    # function to set the admin budget to 0 else other value
+    @staticmethod
+    def Admin_budget():
+        users = User.query.filter_by(user_role=1).all()
+        
+        if users:
+            for user in users:
+                user.budget = 0
+            db.session.commit()
+            return f"Budget of user with ID  has been set to zero."
+        else:
+            return 'No users found with the specified role.'
+
+
     #function to dissasociate a user with a car
     @staticmethod
     def dissasociate_user_car(user_id):        
@@ -57,7 +74,10 @@ class User(db.Model, UserMixin):
 
         if user:
             # Disassociate all vehicles owned by the user
-            vehicles_owned_by_user = Vehicles.query.filter_by(owner=user.id).all()
+            # Combine cart items and purchased items into a single query result
+            vehicles_owned_by_user = Cart.query.filter_by(user_id=user_id).union(
+                PurchasedItems.query.filter_by(user_id=user_id)
+            ).all()
             
             for vehicle in vehicles_owned_by_user:
                 vehicle.owner = None
@@ -73,14 +93,15 @@ class User(db.Model, UserMixin):
     @staticmethod
     def delete_user(user_id):
         user = User.query.get(user_id)
-
-        if user:
+        
+        if user :
             # Disassociate all vehicles owned by the user
-            vehicles_owned_by_user = Vehicles.query.filter_by(owner=user.id).all()
+            vehicles_owned_by_user = Cart.query.filter_by(user_id=user_id).union(
+                PurchasedItems.query.filter_by(user_id=user_id)
+            ).all()
             
-            for vehicle in vehicles_owned_by_user:
-                vehicle.owner = None
-            db.session.commit()
+            for vehicle in vehicles_owned_by_user:                
+                db.session.delete(vehicle)
             
             # Now you can safely delete the user
             db.session.delete(user)
@@ -105,24 +126,46 @@ class Vehicles(db.Model):
     car_type = db.Column(db.String(length=30), unique=False)
     # car_units = db.Column(db.Integer(), nullable=False, unique=False)
    
-    owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    # owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    cart_relationship = db.relationship('Cart', backref='vehicle', lazy=True)
+    purchased_relationship = db.relationship('PurchasedItems', backref='vehicle', lazy=True)
 
    
     def __repr__(self):
         return f'Item {self.model}'
     
     def add_to_cart(self, user):
+        cart_item = Cart(user_id=user.id, vehicle_id=self.id)
         self.owner = user.id
+        db.session.add(cart_item)
         db.session.commit()
 
     def buy(self, user):
+        purchased_item = PurchasedItems(user_id=user.id, vehicle_id=self.id)
         self.owner = user.id
         user.budget -= self.price
+        db.session.add(purchased_item)
         db.session.commit()
 
-    # def sell(self, user):
-    #     self.owner = None
-    #     user.budget += self.price
-    #     db.session.commit()
+   
+
+class Cart(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    
+    vehicle_id = db.Column(db.Integer(), db.ForeignKey('vehicles.id'))
+    user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
+
+    def buy(self, user):
+        purchased_item = PurchasedItems(user_id=user.id, vehicle_id=self.id)
+        self.owner = user.id
+        db.session.add(purchased_item)
+        db.session.commit()
+
+
+class PurchasedItems(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+
+    vehicle_id = db.Column(db.Integer(), db.ForeignKey('vehicles.id'))
+    user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
     
     
