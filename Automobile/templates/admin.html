@@ -6,52 +6,141 @@
 
 {% block content %}
 
-    <div class="bg-dark text-white text-center">
+    <div class="row bg-dark text-white text-center container-fluid mx-auto">
 
-        <h4 >Current users in system</h4>
-        <div>
-            <table class="container table table-bordered table-striped w-50">
-                <thead>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Username</th>
-                        <th>Email</th>                                              
-                    </tr>
-                </thead>
+        <div class="col bg-success overflow-x-auto-md" id="veh">
+            <div class="container-fluid ">
+                <h4 >Database for vehicles table</h4>
 
-                <tbody>
-                    {% for user in users %}
-                    {% include 'includes/update_user.html' %}
-                   
-                    <tr class="text-center">
-                        <td>{{ user.id }}</td>
-                        <td>{{ user.username }}</td>
-                        <td>{{ user.email_address }}</td>
-                        <td>
-                            <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#deleteUserModal{{user.id}}">
-                                Delete
-                            </button>                           
-                        </td>
-                        
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                <div>
+                    <table class="container table table-bordered table-striped ">
+                        <thead>
+                            <tr >                            
+                                <th>Vehicle ID</th> 
+                                <th>Vehicle model</th>   
+                                <th>Vehicle price</th> 
+                                <th>vehicle description</th>
+                                <th>Vehicle type</th>                                                                    
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            {% for vehicle in vehicles_table %}
+                                                
+                            <tr class="text-center">
+                                <td>{{ vehicle.id }}</td>
+                                <td>{{ vehicle.model }}</td>
+                                <td>{{ vehicle.price }}</td>
+                                <td>{{ vehicle.description }}</td>
+                                <td>{{ vehicle.car_type }}</td>                                                                                                                  
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-            <div>
+        </div>
+
+
+        <div class="col ">       
+            <h4 class="mt-3-sm" >Current users in system</h4>
+
+            <div class="container-fluid overflow-x-auto">
+                <table class="container table table-bordered table-striped w-50 ">
+                    <thead>
+                        <tr>
+                            <th>User ID</th>
+                            <th>Username</th>
+                            <th>Email</th>                                              
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for user in users %}
+                        {% include 'includes/update_user.html' %}
+                    
+                        <tr class="text-center">
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email_address }}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#deleteUserModal{{user.id}}">
+                                    Delete
+                                </button>                           
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div>
+                    
+                    <button type="button" class="btn btn-success mb-2" id="addUser">
+                        Add user
+                    </button> 
                 
-                <button type="button" class="btn btn-success mb-2" id="addUser">
-                    Add user
-                </button> 
-               
+                </div>
+                
             </div>
             
-        </div>
+            <div class="container-fluid mt-5">
+                <h4>User cart items</h4>
+
+                <div>
+                    <table class="container table table-bordered table-striped w-50">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Vehicle ID</th> 
+                                                                       
+                            </tr>
+                        </thead>
         
-        <div class="container-fluid">
-            <h4>User Purchases and cart items</h4>
-        </div>
+                        <tbody>
+                            {% for user in user_cart %}
+                                                
+                            <tr class="text-center">
+                                <td>{{ user.user_id }}</td>
+                                <td>{{ user.vehicle_id }}</td>                        
+                                                            
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="container-fluid mt-5">
+                <h4>User Purchases</h4>
+
+                <div>
+                    <table class="container table table-bordered table-striped w-50">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>Vehicle ID</th>
+                                                                                
+                            </tr>
+                        </thead>
         
+                        <tbody>
+                            {% for user in user_purchases %}                                
+                            
+                            <tr class="text-center">
+                                <td>{{ user.user_id }}</td>
+                                <td>{{ user.vehicle_id }}</td>                                   
+                                                                    
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            
+                </div>
+            </div>
+        </div>       
+    </div>
     </body>
 
 {% endblock %}

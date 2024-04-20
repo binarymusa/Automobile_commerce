@@ -16,7 +16,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           
-          <form method="post" action="{{url_for('market_page')}}">
+          <form method="post" action="{{url_for('cart_page')}}">
             <input id="buy_added_vehicle" name="buy_added_vehicle" type="hidden" value="{{item.id}}">
             <button type="submit" class="btn btn-primary">Purchase</button>
           </form>
@@ -37,16 +37,16 @@
         </div>
 
         <div class="modal-body">          
-            remove item from cart
+            remove {{item.model}} from cart
                     
         </div>
 
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             
-            <form method="post" action="{{url_for('market_page')}}">
-            <input id="remove_added_vehicle" name="remove_added_vehicle" type="hidden" value="{{item.id}}">
-            <button type="submit" class="btn btn-primary">Purchase</button>
+            <form method="post" action="{{url_for('cart_page')}}">
+              <input id="remove_added_vehicle" name="remove_added_vehicle" type="hidden" value="{{item.id}}">
+              <button type="submit" class="btn btn-danger">Delete</button>
             </form>
 
         </div>

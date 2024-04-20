@@ -52,5 +52,8 @@
     .navbar-nav .nav-item {
      margin-right: 0;
     }
+    #veh{
+        overflow-x: auto;
+    }
    
 }

@@ -95,14 +95,16 @@ class User(db.Model, UserMixin):
         user = User.query.get(user_id)
         
         if user :
-            # Disassociate all vehicles owned by the user
-            vehicles_owned_by_user = Cart.query.filter_by(user_id=user_id).union(
-                PurchasedItems.query.filter_by(user_id=user_id)
-            ).all()
+            # Subquery to select vehicle IDs owned by the user
+            # A subquery is simply a nested query. can be used in another query
+            subquery = db.session.query(Cart.id).filter_by(user_id=user_id).union(
+                db.session.query(PurchasedItems.id).filter_by(user_id=user_id)
+            ).subquery()
             
-            for vehicle in vehicles_owned_by_user:                
-                db.session.delete(vehicle)
-            
+            # Delete related records from Cart and PurchasedItems tables and disassociate vehicles
+            Cart.query.filter(Cart.id.in_(subquery)).delete(synchronize_session=False)
+            PurchasedItems.query.filter(PurchasedItems.id.in_(subquery)).delete(synchronize_session=False)
+
             # Now you can safely delete the user
             db.session.delete(user)
             db.session.commit()
@@ -140,6 +142,7 @@ class Vehicles(db.Model):
         db.session.add(cart_item)
         db.session.commit()
 
+
     def buy(self, user):
         purchased_item = PurchasedItems(user_id=user.id, vehicle_id=self.id)
         self.owner = user.id
@@ -155,12 +158,9 @@ class Cart(db.Model):
     vehicle_id = db.Column(db.Integer(), db.ForeignKey('vehicles.id'))
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
 
-    def buy(self, user):
-        purchased_item = PurchasedItems(user_id=user.id, vehicle_id=self.id)
-        self.owner = user.id
-        db.session.add(purchased_item)
+    def remove_from_cart(self):
+        db.session.delete(self)
         db.session.commit()
-
 
 class PurchasedItems(db.Model):
     id = db.Column(db.Integer(), primary_key=True)

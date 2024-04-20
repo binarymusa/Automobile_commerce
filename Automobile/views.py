@@ -3,7 +3,7 @@ from Automobile import app,db
 from flask import redirect, url_for, render_template, flash, session,request
 from flask_login import login_user, logout_user, login_required, current_user
 from Automobile.models import User, Vehicles, Cart, PurchasedItems
-
+from collections import Counter
 
 
 @app.route('/')
@@ -43,7 +43,9 @@ def admin_page():
    # checks for users with roles other than 1 and null roles and pass them to query for display
    # '|' - represents or operator
    users = User.query.filter((User.user_role != 1) | (User.user_role == None)).all()
-   
+   user_cart = Cart.query.all()
+   user_purchases = PurchasedItems.query.all()
+   vehicles_table = Vehicles.query.all()
    
    if request.method == 'POST':
       user_to_delete = request.form['user_delete']
@@ -54,8 +56,7 @@ def admin_page():
         flash('user deletion confirmed', category='danger')
         return redirect(url_for('admin_page'))  
 
-   print(users)  # Add this line for troubleshooting
-   return render_template('admin.html', users =users, )
+   return render_template('admin.html', users =users, user_cart=user_cart, user_purchases=user_purchases, vehicles_table=vehicles_table)
 
 
 @app.route('/welcome_page')
@@ -136,45 +137,72 @@ def market_page():
 @app.route('/mycart_page', methods=['GET', 'POST'])
 @login_required
 def cart_page():
-   my_cart = Cart.query.filter_by(user_id=current_user.id).all()
 
-   # Initialize a list to store the details of each vehicle in the cart
-   cart_vehicle_details = []
+   if request.method == 'GET':
+      my_cart = Cart.query.filter_by(user_id=current_user.id).all()
+      
+      item_count = Counter(my_cart)
+      
+      print(item_count)
 
-   # Iterate over each item in the cart and retrieve the details of the associated vehicle
-   for item in my_cart:
-      vehicle = item.vehicle  # Access the associated vehicle object via the relationship
-      # Add the details of the vehicle to the list
-      cart_vehicle_details.append({
-         'id': vehicle.id,
-         'model': vehicle.model,
-         'price': vehicle.price,
-         'description': vehicle.description,
-         'car_type': vehicle.car_type,
-        
-      })
+      # Initialize a list to store the details of each vehicle in the cart
+      cart_vehicle_details = []
 
-      if request.method == 'POST':
-         item = request.form.get('buy_added_vehicle')
+      # Iterate over each item in the cart and retrieve the details of the associated vehicle
+      for item in my_cart:
+         vehicle = item.vehicle  # Access the associated vehicle object via the relationship
+         # Add the details of the vehicle to the list
+         cart_vehicle_details.append({
+            'id': vehicle.id,
+            'model': vehicle.model,
+            'price': vehicle.price,
+            'description': vehicle.description,
+            'car_type': vehicle.car_type,
+         
+         })
 
-         if item:            
-            selected_item = Cart.query.filter_by(id=item).first()
+   if request.method == 'POST':
+      item = request.form.get('buy_added_vehicle')
+      item2 = request.form.get('remove_added_vehicle')
 
-            if current_user.can_purchase(selected_item):
-               selected_item.buy(current_user)
-               flash('purchase was successful', category='success')
-               return redirect(url_for('purchases_page'))
-            else:
-               flash('you dont enough money to make purchase')
+      if item:            
+         selected_vehicle = Cart.query.filter_by(vehicle_id=item).first()
+         print(selected_vehicle)
 
+         if selected_vehicle and current_user.can_purchase(selected_vehicle.vehicle):
+            selected_vehicle.vehicle.buy(current_user)
+
+            print('sold!')
+            flash('Purchase was successful', category='success')
+
+            # After purchasing, remove the item from the cart
+            cart_item = Cart.query.filter_by(vehicle_id=item, user_id=current_user.id).first()
+            
+            db.session.delete(cart_item)
+            db.session.commit()
+            return redirect(url_for('purchases_page'))
+         else:
+            flash('not enough money to purchase', category='danger')
+            return redirect(url_for('cart_page'))
+   
+      elif item2:
+         selected_vehicle = Cart.query.filter_by(vehicle_id=item2, user_id=current_user.id).first()
+         
+         if selected_vehicle:
+            selected_vehicle.remove_from_cart()
+            flash('item removed from cart', category='success')
+            return redirect(url_for('cart_page'))
+         else:
+            flash('an error occured')      
 
    return render_template('Cart.html', cart_vehicle_details=cart_vehicle_details)
+
 
 @app.route('/my_purchases_page')
 @login_required
 def purchases_page():
    my_purchase = PurchasedItems.query.filter_by(user_id=current_user.id).all()
-
+   
    # Initialize a list to store the details of each vehicle in the cart
    purchased_vehicle_details = []
 
