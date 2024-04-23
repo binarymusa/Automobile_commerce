@@ -149,6 +149,11 @@ class Vehicles(db.Model):
         user.budget -= self.price
         db.session.add(purchased_item)
         db.session.commit()
+    
+    
+    def delete_vehicle(self):
+        db.session.delete(self)
+        db.session.commit()
 
    
 

@@ -48,13 +48,25 @@ def admin_page():
    vehicles_table = Vehicles.query.all()
    
    if request.method == 'POST':
-      user_to_delete = request.form['user_delete']
+      user_to_delete = request.form.get('user_delete')
+      vehicle_to_delete = request.form.get('vehicle_delete')
 
       if user_to_delete:
         User.delete_user(user_to_delete)
 
         flash('user deletion confirmed', category='danger')
         return redirect(url_for('admin_page'))  
+      
+      elif vehicle_to_delete:
+         selected_vehicle = Vehicles.query.filter_by(id=vehicle_to_delete).first()
+
+         if selected_vehicle:
+            selected_vehicle.delete_vehicle()
+            flash('vehicle deletion succesful', category='danger')
+            return redirect(url_for('admin_page'))
+         else:
+            flash('deletion unsuccesful', category='info')
+
 
    return render_template('admin.html', users =users, user_cart=user_cart, user_purchases=user_purchases, vehicles_table=vehicles_table)
 

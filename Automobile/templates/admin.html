@@ -26,13 +26,24 @@
         
                         <tbody>
                             {% for vehicle in vehicles_table %}
-                                                
+                            {% include 'includes/delete_vehicle.html' %}
                             <tr class="text-center">
                                 <td>{{ vehicle.id }}</td>
                                 <td>{{ vehicle.model }}</td>
                                 <td>{{ vehicle.price }}</td>
                                 <td>{{ vehicle.description }}</td>
-                                <td>{{ vehicle.car_type }}</td>                                                                                                                  
+                                <td>{{ vehicle.car_type }}</td>   
+                                <td>
+                                    <button type="button" class="btn btn-success mb-2" >
+                                        Add
+                                    </button>
+
+                                    <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#deleteVehicleModal{{vehicle.id}}">
+                                        Delete
+                                    </button> 
+                                                                        
+                                </td>
+                                
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -58,7 +69,7 @@
 
                     <tbody>
                         {% for user in users %}
-                        {% include 'includes/update_user.html' %}
+                        {% include 'includes/update_dbs.html' %}
                     
                         <tr class="text-center">
                             <td>{{ user.id }}</td>
