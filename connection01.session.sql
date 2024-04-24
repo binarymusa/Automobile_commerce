@@ -32,7 +32,7 @@ WHERE id IN ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
 
 -- SELECT * FROM vehicles
 -- SELECT * FROM user
-SELECT * FROM cart
+-- SELECT * FROM cart
 -- SELECT * FROM purchased_items
 
 -- DELETE FROM cart
