@@ -30,14 +30,23 @@ WHERE id IN ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
 -- UPDATE user SET user_role = '1' WHERE id = 12
 --  USE Automobile;
 
-SELECT * FROM vehicles
+-- SELECT * FROM vehicles
 -- SELECT * FROM user
--- SELECT * FROM cart
+SELECT * FROM cart
 -- SELECT * FROM purchased_items
 
 -- DELETE FROM cart
 -- DELETE FROM purchased_items
 
+/* INSERT INTO vehicles (price, description, model, car_type)
+VALUES 
+(
+    '72000',
+    'Blue cabriolete, 2024 model year, 4.0L V-8 engine, 453hp',
+    'Audi A8',    
+    'Audi'
+)
+ */
 
 
 

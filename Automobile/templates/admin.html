@@ -33,19 +33,18 @@
                                 <td>{{ vehicle.price }}</td>
                                 <td>{{ vehicle.description }}</td>
                                 <td>{{ vehicle.car_type }}</td>   
-                                <td>
-                                    <button type="button" class="btn btn-success mb-2" >
-                                        Add
-                                    </button>
-
+                                <td>               
                                     <button type="button" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#deleteVehicleModal{{vehicle.id}}">
                                         Delete
                                     </button> 
                                                                         
                                 </td>
-                                
+                               
                             </tr>
                             {% endfor %}
+                            <button type="button" class="btn btn-secondary mb-2" >
+                                Add vehicle
+                            </button>
                         </tbody>
                     </table>
                 </div>
