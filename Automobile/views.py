@@ -56,7 +56,7 @@ def admin_page():
 
         flash('user deletion confirmed', category='danger')
         return redirect(url_for('admin_page'))  
-      
+           
       elif vehicle_to_delete:
          selected_vehicle = Vehicles.query.filter_by(id=vehicle_to_delete).first()
 
@@ -141,7 +141,6 @@ def market_page():
             return redirect(url_for('cart_page'))
          else:
             flash('Vehicle currently unavailable', category='danger')
-
       
    return render_template('Market.html', mercedes=mercedes,bmw=bmw,rover=rover,audi=audi)
 
@@ -153,9 +152,8 @@ def cart_page():
    if request.method == 'GET':
       my_cart = Cart.query.filter_by(user_id=current_user.id).all()
       
-      item_count = Counter(my_cart)
-      
-      print(item_count)
+      # item_count = Counter(my_cart)
+      # print(item_count)
 
       # Initialize a list to store the details of each vehicle in the cart
       cart_vehicle_details = []
