@@ -5,6 +5,8 @@ from flask_login import login_user, logout_user, login_required, current_user
 from Automobile.models import User, Vehicles, Cart, PurchasedItems
 from collections import Counter
 
+from sqlalchemy import or_, and_
+
 
 @app.route('/')
 @app.route('/login_page', methods=['GET', 'POST'])
@@ -42,7 +44,8 @@ def admin_welcome():
 def admin_page():
    # checks for users with roles other than 1 and null roles and pass them to query for display
    # '|' - represents or operator
-   users = User.query.filter((User.user_role != 1) | (User.user_role == None)).all()
+   # users = User.query.filter((User.user_role != 1) | (User.user_role == None)).all()
+   users = User.query.filter(or_(User.user_role != 1 , User.user_role == None)).all()
    user_cart = Cart.query.all()
    user_purchases = PurchasedItems.query.all()
    vehicles_table = Vehicles.query.all()
@@ -84,7 +87,7 @@ def signup_page():
       email = request.form['email']
       password = request.form['password']
          
-      existing_user = User.query.filter((User.username == username) & (User.email_address == email)).first()
+      existing_user = User.query.filter(and_(User.username == username , User.email_address == email)).first()
       
       if existing_user:
          flash(f'User already exists. Try different credentials',category='danger')
