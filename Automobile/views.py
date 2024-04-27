@@ -41,9 +41,10 @@ def admin_welcome():
 
 @app.route('/Admin_page', methods=['GET' , 'POST'])
 @login_required
-def admin_page():
-   # checks for users with roles other than 1 and null roles and pass them to query for display
-   # '|' - represents or operator
+def admin_page():   
+   # '|' , or_ - represents 'or' logical operator
+   # check for users with roles other than 1 and null roles and pass them to query for display
+   
    # users = User.query.filter((User.user_role != 1) | (User.user_role == None)).all()
    users = User.query.filter(or_(User.user_role != 1 , User.user_role == None)).all()
    user_cart = Cart.query.all()
@@ -117,8 +118,8 @@ def market_page():
 
      
    if request.method == 'POST':
-      item = request.form.get('purchased_vehicle')  #['purchased_vehicle']
-      item2 = request.form.get('added_vehicle') #['added_vehicle']
+      item = request.form.get('purchased_vehicle') 
+      item2 = request.form.get('added_vehicle') 
       
       if item:
          selected_item = Vehicles.query.filter_by(id=item).first()
