@@ -111,12 +111,13 @@ def signup_page():
 @app.route('/market_page', methods=['GET', 'POST'])
 @login_required
 def market_page():
-   mercedes = Vehicles.query.filter_by(car_type='mercedes').all()
-   bmw = Vehicles.query.filter_by(car_type='bmw').all()
-   rover = Vehicles.query.filter_by(car_type='rangerover').all()
-   audi = Vehicles.query.filter_by(car_type='audi').all()
+   
+   car_types = ['mercedes', 'bmw', 'rangerover', 'audi']
 
-     
+   # Using dictionary comprehension to store the results for each car type
+   cars_by_type = {car_type: Vehicles.query.filter_by(car_type=car_type).all() for car_type in car_types}
+
+   
    if request.method == 'POST':
       item = request.form.get('purchased_vehicle') 
       item2 = request.form.get('added_vehicle') 
@@ -146,7 +147,7 @@ def market_page():
          else:
             flash('Vehicle currently unavailable', category='danger')
       
-   return render_template('Market.html', mercedes=mercedes,bmw=bmw,rover=rover,audi=audi)
+   return render_template('Market.html', cars_by_type=cars_by_type)
 
 
 @app.route('/mycart_page', methods=['GET', 'POST'])

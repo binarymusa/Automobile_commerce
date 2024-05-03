@@ -54,6 +54,7 @@ class User(db.Model, UserMixin):
     
 
     # function to set the admin budget to 0 else other value
+    # static methods don't have access to the instance (self) or class (cls) objects.
     @staticmethod
     def Admin_budget():
         users = User.query.filter_by(user_role=1).all()
