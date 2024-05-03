@@ -47,9 +47,9 @@
 }
 
 #key{
-    animation: rotateOnce 2s linear 5 forwards;
+    animation: fillInOut 2s linear 5 forwards;
 }
-@keyframes rotateOnce {
+@keyframes fillInOut {
     0%{
         color: rgb(206, 209, 208);
     }    
@@ -107,4 +107,6 @@ input[type="submit"]:hover {
     /* color: #46ad5cc9; */
 }
 
-
+.fixed-large{
+    position: fixed;
+}

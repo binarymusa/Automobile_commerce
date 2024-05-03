@@ -9,7 +9,7 @@
 
 <div class="d-flex  font-monospace  ">
     <!-- left fixed bar -->
-        <div class="col-lg-2 col-12 mb-3 ml-5  h-100 rounded text-center py-5 overflow-y-auto " id="fix"  style="left: 0;position:fixed">
+        <div class="col-lg-2 col-12 mb-3 ml-5  h-100 rounded text-center py-5 overflow-y-auto position-fixed" id="fix" style="left: 0;">
             <nav >
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -57,7 +57,7 @@
         
  
         <!-- middle fixed bar -->
-        <div class="col-lg-10 col-12 text-white text-center bg-dark" style="margin-left: auto;"   >
+        <div class="col-lg-10 col-12 text-white text-center bg-dark"  style="margin-left: auto;">
             
           <div class="my-3 " id="bmw_section">
                 <h4><strong>BMW</strong></h4>
@@ -90,8 +90,8 @@
                             {% for vehicle in cars_by_type['bmw'] %}
                             <!-- always add the incluudes file right after the loop -->
                               {% include 'includes/market_modal.html' %} 
-                              <div class="col-md-4">
-                                <div class="booking-cards w-100  my-2 text-white rounded mx-auto " style="background: #5a5555"  >
+                              <div class="col-md-4 " id="onhover">
+                                <div class="booking-cards w-100  my-2 text-white rounded mx-auto "  style="background: #5a5555"  >
                               
                                   <div class="booking-card text-center py-3">
                                       <p><strong>model:</strong> {{ vehicle.model }}</p>

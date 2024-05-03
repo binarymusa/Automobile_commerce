@@ -111,12 +111,10 @@ def signup_page():
 @app.route('/market_page', methods=['GET', 'POST'])
 @login_required
 def market_page():
-   
    car_types = ['mercedes', 'bmw', 'rangerover', 'audi']
 
    # Using dictionary comprehension to store the results for each car type
    cars_by_type = {car_type: Vehicles.query.filter_by(car_type=car_type).all() for car_type in car_types}
-
    
    if request.method == 'POST':
       item = request.form.get('purchased_vehicle') 
@@ -159,12 +157,14 @@ def cart_page():
       
       # item_count = Counter(my_cart)
       # print(item_count)
+      
 
       # Initialize a list to store the details of each vehicle in the cart
       cart_vehicle_details = []
 
       # Iterate over each item in the cart and retrieve the details of the associated vehicle
       for item in my_cart:
+         
          vehicle = item.vehicle  # Access the associated vehicle object via the relationship
          # Add the details of the vehicle to the list
          cart_vehicle_details.append({
@@ -175,6 +175,9 @@ def cart_page():
             'car_type': vehicle.car_type,
          
          })
+      length_of_list = len(cart_vehicle_details)
+     
+         
 
    if request.method == 'POST':
       item = request.form.get('buy_added_vehicle')
@@ -210,7 +213,7 @@ def cart_page():
          else:
             flash('an error occured')      
 
-   return render_template('Cart.html', cart_vehicle_details=cart_vehicle_details)
+   return render_template('Cart.html', cart_vehicle_details=cart_vehicle_details, length_of_list = length_of_list)
 
 
 @app.route('/my_purchases_page')
