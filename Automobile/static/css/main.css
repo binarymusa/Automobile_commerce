@@ -110,3 +110,6 @@ input[type="submit"]:hover {
 .fixed-large{
     position: fixed;
 }
+.onhover:hover{
+    box-shadow: 0 0 10px  whitesmoke;
+}

@@ -90,10 +90,10 @@
                             {% for vehicle in cars_by_type['bmw'] %}
                             <!-- always add the incluudes file right after the loop -->
                               {% include 'includes/market_modal.html' %} 
-                              <div class="col-md-4 " id="onhover">
+                              <div class="col-md-4 " >
                                 <div class="booking-cards w-100  my-2 text-white rounded mx-auto "  style="background: #5a5555"  >
                               
-                                  <div class="booking-card text-center py-3">
+                                  <div class="booking-card text-center py-3 onhover">
                                       <p><strong>model:</strong> {{ vehicle.model }}</p>
                                       <p><strong>description:</strong> {{ vehicle.description }}</p>
                                       <p><strong>price:</strong> ${{ vehicle.price }}</p>
@@ -156,7 +156,7 @@
                               <div class="col-md-4">
                                 <div class="booking-cards w-100 my-2 text-white rounded mx-auto " style="background: #5a5555" >
                               
-                                  <div class="booking-card text-center py-3">
+                                  <div class="booking-card text-center py-3 onhover">
                                       <p><strong>model:</strong> {{ vehicle.model }}</p>
                                       <p><strong>description:</strong> {{ vehicle.description }}</p>
                                       <p><strong>price:</strong> ${{ vehicle.price }}</p>
@@ -218,7 +218,7 @@
                               <div class="col-md-4">
                                 <div class="booking-cards w-100 my-2 text-white rounded mx-auto " style="background: #5a5555" >
                               
-                                  <div class="booking-card text-center py-3 ">
+                                  <div class="booking-card text-center py-3 onhover">
                                       <p><strong>model:</strong> {{ vehicle.model }}</p>
                                       <p><strong>description:</strong> {{ vehicle.description }}</p>
                                       <p><strong>price:</strong> ${{ vehicle.price }}</p>
@@ -284,7 +284,7 @@
                         <div class="col-md-4">
                           <div class="booking-cards w-100  my-2 text-white rounded mx-auto " style="background: #5a5555"  >
                         
-                            <div class="booking-card text-center py-3">
+                            <div class="booking-card text-center py-3 onhover">
                                 <p><strong>model:</strong> {{ vehicle.model }}</p>
                                 <p><strong>description:</strong> {{ vehicle.description }}</p>
                                 <p><strong>price:</strong> ${{ vehicle.price }}</p>
