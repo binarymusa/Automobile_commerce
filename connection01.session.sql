@@ -3,7 +3,7 @@
 
 USE <DB.NMAE>
 DELETE FROM <table_nmae>  or filter using (DELETE FROM <table_nmae> WHERE <column.name>=<name> IN (<column_id>)
-SELECT * FROM <table.nmae> or SELECT * FROM <table.name> WHERE <column.name>= <name>
+SELECT * FROM <table.name> or SELECT * FROM <table.name> WHERE <column.name>= <name>
 DROP TABLE table_name;
 DROP TABLE IF EXISTS table_name
 INSERT INTO <table_nmae> (<column_name>) VALUES ('<valuea>'), ('v<value_b>')
@@ -27,17 +27,32 @@ WHERE id IN ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
 
 */
 
--- UPDATE user SET user_role = '1' WHERE id = 12
+
 --  USE Automobile;
+--  UPDATE user SET username = 'shrub' WHERE id = 26;
 
 -- SELECT * FROM vehicles
-SELECT * FROM user
--- SELECT * FROM roles
--- SELECT * FROM cart
--- SELECT * FROM purchased_items
+-- SELECT * FROM vehicles WHERE  
 
--- DELETE FROM cart
--- DELETE FROM purchased_items
+SELECT * FROM user
+-- SELECT * FROM user WHERE user_role = 1
+-- UPDATE user SET user_role = 1 WHERE id = 29
+
+-- SELECT * FROM roles
+-- SELECT * FROM roles WHERE  
+
+-- SELECT * FROM cart
+-- SELECT * FROM cart WHERE  
+
+-- SELECT * FROM purchased_items
+-- SELECT * FROM purchased_items WHERE 
+
+
+-- DELETE FROM cart WHERE
+-- DELETE FROM purchased_items WHERE vehicle_id = 
+-- DELETE FROM user WHERE id =  31
+-- DELETE FROM roles WHERE  
+
 
 /* INSERT INTO vehicles (price, description, model, car_type)
 VALUES 

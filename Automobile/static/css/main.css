@@ -1,7 +1,7 @@
 
 .nav-item a{
     color: black;
-    
+    color: #271e1eb7;
 }
 .cust-m{
     margin-left: 3%;
@@ -112,4 +112,11 @@ input[type="submit"]:hover {
 }
 .onhover:hover{
     box-shadow: 0 0 10px  whitesmoke;
+}
+#foot-links{
+    list-style: none;
+}
+#foot-links a{
+    text-decoration: none;
+    color: antiquewhite;
 }

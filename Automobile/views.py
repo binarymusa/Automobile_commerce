@@ -3,8 +3,6 @@ from Automobile import app,db
 from flask import redirect, url_for, render_template, flash, session,request
 from flask_login import login_user, logout_user, login_required, current_user
 from Automobile.models import User, Vehicles, Cart, PurchasedItems
-from collections import Counter
-
 from sqlalchemy import or_, and_
 
 
@@ -47,10 +45,8 @@ def admin_page():
    
    # users = User.query.filter((User.user_role != 1) | (User.user_role == None)).all()
    users = User.query.filter(or_(User.user_role != 1 , User.user_role == None)).all()
-   user_cart = Cart.query.all()
-   user_purchases = PurchasedItems.query.all()
-   vehicles_table = Vehicles.query.all()
-   
+   user_cart, user_purchases, vehicles_table = Cart.query.all(), PurchasedItems.query.all(), Vehicles.query.all()
+      
    if request.method == 'POST':
       user_to_delete = request.form.get('user_delete')
       vehicle_to_delete = request.form.get('vehicle_delete')
@@ -93,16 +89,15 @@ def signup_page():
       if existing_user:
          flash(f'User already exists. Try different credentials',category='danger')
          return redirect(url_for('signup_page'))
-      else:
-         
-         # Add the new user to the database
+      else:         
+         # Add the new user to database
          new_user = User(username=username, email_address=email, password=password)
          db.session.add(new_user)
          db.session.commit()
 
       login_user(new_user)
       flash(f'signup successful', category='success')
-      # Redirect to a success page or do whatever you want after signup
+      # Redirect to a success page 
       return redirect(url_for('welcome_page'))
    else:
       return render_template('signup.html')
@@ -119,7 +114,9 @@ def market_page():
    if request.method == 'POST':
       item = request.form.get('purchased_vehicle') 
       item2 = request.form.get('added_vehicle') 
-      
+      # item3 = request.form.get('')
+
+
       if item:
          selected_item = Vehicles.query.filter_by(id=item).first()
          
@@ -129,7 +126,7 @@ def market_page():
                flash('purchase was successful', category='success')
                return redirect(url_for('purchases_page'))
             else:
-               flash('you dont enough money to make purchase')
+               flash('Not enough money to make purchase')
          else:
             flash('Vehicle currently unavailable', category='danger')
 
@@ -137,13 +134,22 @@ def market_page():
          selected_item = Vehicles.query.filter_by(id=item2).first()
        
          if selected_item:
-            # Add logic to add the item to the cart
+            # Add item to the cart based on method in its model
             selected_item.add_to_cart(current_user)
             
             flash('Item added to cart', category='success')
             return redirect(url_for('cart_page'))
          else:
             flash('Vehicle currently unavailable', category='danger')
+      
+      """ elif item3:
+         model, price = request.form['model'], request.form['price']
+
+         if (model or price):
+            filter_page = Vehicles.filtered_vehicle(model, price)            
+            return render_template('Market.html', filter_page=filter_page)
+         else:
+            flash('no such vehicle', category='danger') """
       
    return render_template('Market.html', cars_by_type=cars_by_type)
 
@@ -155,18 +161,12 @@ def cart_page():
    if request.method == 'GET':
       my_cart = Cart.query.filter_by(user_id=current_user.id).all()
       
-      # item_count = Counter(my_cart)
-      # print(item_count)
-      
-
       # Initialize a list to store the details of each vehicle in the cart
       cart_vehicle_details = []
 
-      # Iterate over each item in the cart and retrieve the details of the associated vehicle
-      for item in my_cart:
-         
+      for item in my_cart:         
          vehicle = item.vehicle  # Access the associated vehicle object via the relationship
-         # Add the details of the vehicle to the list
+         
          cart_vehicle_details.append({
             'id': vehicle.id,
             'model': vehicle.model,
@@ -176,7 +176,6 @@ def cart_page():
          
          })
       length_of_list = len(cart_vehicle_details)
-     
          
 
    if request.method == 'POST':
@@ -200,7 +199,7 @@ def cart_page():
             db.session.commit()
             return redirect(url_for('purchases_page'))
          else:
-            flash('not enough money to purchase', category='danger')
+            flash('Not enough money to purchase', category='danger')
             return redirect(url_for('cart_page'))
    
       elif item2:
@@ -211,7 +210,7 @@ def cart_page():
             flash('item removed from cart', category='success')
             return redirect(url_for('cart_page'))
          else:
-            flash('an error occured')      
+            flash('an error occured', category='danger')      
 
    return render_template('Cart.html', cart_vehicle_details=cart_vehicle_details, length_of_list = length_of_list)
 

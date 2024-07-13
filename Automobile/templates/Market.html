@@ -7,11 +7,13 @@
 
 {% block content %}
 
-<div class="d-flex  font-monospace  ">
+<div class="d-flex font-monospace  ">
     <!-- left fixed bar -->
-        <div class="col-lg-2 col-12 mb-3 ml-5  h-100 rounded text-center py-5 overflow-y-auto position-fixed" id="fix" style="left: 0;">
-            <nav >
-                <ul class="navbar-nav">
+        <div class="col-lg-2 col-12 mb-3 ml-5 bg-white rounded text-center py-3 overflow-y-auto position-fixed border" id="fix" style="left: 7px;height:89vh;">
+            <div class="m-auto border-top border-2" style="width: fit-content;">
+              <h5>Vehicle Models</h5>
+          <nav>
+                <ul class="navbar-nav m-auto" style="width: fit-content;">
                     <li class="nav-item">
                         <a  class="nav-link" href="#bmw_section">
                             BMW
@@ -36,22 +38,42 @@
                       </a>
                   </li>
 
+                  <div class="mx-5 bg-success rounded ">
+                    <a class="rounded text-white nav-link mx-1" href="{{url_for('cart_page')}}">
+                        Cart
+                    </a>
+                  </div>
+  
+                  <div class="my-1 mx-5 rounded" style="background:rgb(231, 153, 9)">
+                    <a class="rounded text-white nav-link mx-1" href="{{url_for('purchases_page')}}">
+                      Purchases
+                    </a>
+                  </div>
                   
               </ul>
 
-                <div class="my-5 mx-5 bg-success rounded ">
-                  <a class="rounded text-white nav-link mx-1" href="{{url_for('cart_page')}}">
-                      Cart
-                  </a>
-                </div>
-
-                <div class="my-5 mx-5 rounded" style="background:rgb(231, 153, 9)">
-                  <a class="rounded text-white nav-link mx-1" href="{{url_for('purchases_page')}}">
-                    Purchases
-                  </a>
-              </div>
-
             </nav>
+          </div>
+
+          <div class="my-3 py-2 mx-3 border-top border-2" >
+           <h5>Filter Search</h6>
+           
+           <form class="mx-3" method="post" action="{{url_for('market_page')}}">
+            <label for="username">MODEL: </label>
+            <input  type="text" id="model" name="model" required>
+
+            <label for="username">PRICE: </label>
+            <input  type="text" id="price" name="price" required>
+
+            <button type="submit" class="nav-link mx-5 rounded px-4 py-2 " style="background-color: #271e1eb7;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+              </svg>
+            </button>
+          
+           </form>
+
+          </div>
 
         </div>
         
@@ -62,7 +84,7 @@
           <div class="my-3 " id="bmw_section">
                 <h4><strong>BMW</strong></h4>
                 <div class="container-fluid row">
-                    <div class="col-2 mx-3 text-white"  id="bmw" >
+                    <div class="col-2 mx-3 text-white rounded-1"  id="bmw" >
                         <h4>BMW</h4>
                     </div>
 
@@ -91,7 +113,7 @@
                             <!-- always add the incluudes file right after the loop -->
                               {% include 'includes/market_modal.html' %} 
                               <div class="col-md-4 " >
-                                <div class="booking-cards w-100  my-2 text-white rounded mx-auto "  style="background: #5a5555"  >
+                                <div class="booking-cards w-100  my-2 text-white rounded mx-auto "  style="background: #928f8fb6">
                               
                                   <div class="booking-card text-center py-3 onhover">
                                       <p><strong>model:</strong> {{ vehicle.model }}</p>
@@ -127,7 +149,7 @@
             <div class="my-3 " id="mercedes_section" >
                 <h4><strong>MERCEDES</strong></h4>
                 <div class="container-fluid row">
-                    <div class="col-2 mx-3 text-white"  id="merc">
+                    <div class="col-2 mx-3 text-white rounded-1"  id="merc">
                         <h4>MERCEDES BENZ</h4>
                     </div>
 
@@ -154,7 +176,7 @@
                             {% for vehicle in cars_by_type['mercedes'] %}
                               {% include 'includes/market_modal.html' %}
                               <div class="col-md-4">
-                                <div class="booking-cards w-100 my-2 text-white rounded mx-auto " style="background: #5a5555" >
+                                <div class="booking-cards w-100 my-2 text-white rounded mx-auto " style="background: #928f8fb6" >
                               
                                   <div class="booking-card text-center py-3 onhover">
                                       <p><strong>model:</strong> {{ vehicle.model }}</p>
@@ -189,7 +211,7 @@
             <div class="my-3 " id="rover_section">
                 <h4><strong>RANGEROVER</strong></h4>
                 <div class="container-fluid row">
-                    <div class="col-2 mx-3 text-white"  id="audi"  >
+                    <div class="col-2 mx-3 text-white rounded-1"  id="audi"  >
                         <h4>RANGEROVER</h4>
                     </div>
 
@@ -216,7 +238,7 @@
                             {% for vehicle in cars_by_type['rangerover'] %}
                               {% include 'includes/market_modal.html' %}
                               <div class="col-md-4">
-                                <div class="booking-cards w-100 my-2 text-white rounded mx-auto " style="background: #5a5555" >
+                                <div class="booking-cards w-100 my-2 text-white rounded mx-auto " style="background: #928f8fb6" >
                               
                                   <div class="booking-card text-center py-3 onhover">
                                       <p><strong>model:</strong> {{ vehicle.model }}</p>
@@ -254,7 +276,7 @@
         <div class="my-3 " id="audi_section">
           <h4><strong>AUDI</strong></h4>
           <div class="container-fluid row">
-              <div class="col-2 mx-3 text-white"  id="bmw" >
+              <div class="col-2 mx-3 text-white rounded-1"  id="bmw" >
                   <h4>AUDI</h4>
               </div>
 
@@ -282,7 +304,7 @@
                       <!-- always add the incluudes file right after the loop -->
                         {% include 'includes/market_modal.html' %} 
                         <div class="col-md-4">
-                          <div class="booking-cards w-100  my-2 text-white rounded mx-auto " style="background: #5a5555"  >
+                          <div class="booking-cards w-100  my-2 text-white rounded mx-auto " style="background: #928f8fb6"  >
                         
                             <div class="booking-card text-center py-3 onhover">
                                 <p><strong>model:</strong> {{ vehicle.model }}</p>

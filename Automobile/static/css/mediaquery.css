@@ -36,8 +36,7 @@
         z-index: 2;
         padding-top: 3.5rem; /* Adjust according to navbar height */
         transition: all 0.3s ease;
-        background-color: #333;
-  
+        background-color: #333;  
     }
   
     .navbar-collapse.show {

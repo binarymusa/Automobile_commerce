@@ -21,9 +21,9 @@
     
     
     {% if current_user.is_authenticated %}
-        <nav class="navbar navbar-expand-md bg-dark position-sticky sticky-top">
+        <nav class="navbar navbar-expand-md bg-dark position-sticky sticky-top px-2">
 
-            <div class="container-fluid ">
+            <div class="container-fluid">
                 <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
                 <span class="navbar-toggler-icon rounded"></span>
                 </button>
@@ -77,8 +77,19 @@
                                
                             </li>
 
+
+                            <li class="nav-item">
+                                <a class="nav-link mx-1 rounded bg-dark-subtle" href="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-chat-dots" viewBox="0 0 16 16">
+                                        <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                                        <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2"/>
+                                    </svg>
+                                </a>
+                                
+                            </li>
+
                             <li class="nav-item cust-m2">
-                                <a class="nav-link   rounded" href="{{url_for('purchases_page')}}" style="background:rgb(231, 153, 9)">
+                                <a class="nav-link rounded" href="{{url_for('purchases_page')}}" style="background:rgb(231, 153, 9)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="antiquewhite" class="bi bi-check-circle" viewBox="0 0 16 16">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                         <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
@@ -161,7 +172,7 @@
         {% if messages %}
             {% for category, message in messages %}
                 <div class="alert alert-{{category}}">
-                    <button type="button" class="m1-2 mb-1 close" data-bs-dismiss="alert" aria-label="Close">
+                    <button type="button" class="m1-2  close" data-bs-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     {{ message }}
@@ -171,10 +182,30 @@
         {% endif %}
     {% endwith %}
 
-    <main class="font-monospace">
+    <main class="font-monospace bg-dark">
         {% block content %}
 
         {% endblock %}
+
+        <footer>
+
+            <div class="container-fluid row mt-3 mx-auto" style="border-top: 1px solid ;">
+                <div class="col text-center mt-1">
+                    <ul id="foot-links">                        
+                        <li ><a href="{{url_for('market_page')}}"  >Market</a></li>
+                        <li ><a href="{{url_for('cart_page')}}" >Cart</a></li>
+                        <li ><a href="{{url_for('purchases_page')}}" >Purchases</a></li>
+                    </ul>
+
+                </div>
+
+                <div class="col mt-2 pt-5">
+                   <a href="#" style="text-decoration: none;">&copy; 2024 PrimalTitan</a>   
+                </div>
+            </div>
+           
+        </footer>
+
     </main>
 
     <script src="{{ url_for('static', filename='javascript/main.js') }}"></script>

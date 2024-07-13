@@ -3,6 +3,7 @@ from Automobile import db,login_manager
 from Automobile import bcrypt
 from flask_login import UserMixin
 import re
+from sqlalchemy import or_, and_
 
 
 # tells Flask-Login that the function (load_user) should be used to retrieve a user object when a user is logged in and their session needs to be managed.
@@ -53,7 +54,7 @@ class User(db.Model, UserMixin):
         return vehicle_obj in self.vehicle
     
 
-    # function to set the admin budget to 0 else other value
+    # method to set the admin budget to 0
     # static methods don't have access to the instance (self) or class (cls) objects.
     @staticmethod
     def Admin_budget():
@@ -90,7 +91,7 @@ class User(db.Model, UserMixin):
         else:
             return False
 
-    # function to dissasociate a user with a car before deleting them
+    # method to dissasociate a user with a car, then deleting them
     @staticmethod
     def delete_user(user_id):
         user = User.query.get(user_id)
@@ -114,13 +115,13 @@ class User(db.Model, UserMixin):
             return False
 
 
-# maps user roles
+# User roles database
 class Roles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     role_name = db.Column(db.String(length=30), nullable=False, unique=True)
 
    
-# Vehhicles as contained in the server's database
+# Vehicles database
 class Vehicles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     model = db.Column(db.String(length=60), nullable=False, unique=False)
@@ -143,7 +144,6 @@ class Vehicles(db.Model):
         db.session.add(cart_item)
         db.session.commit()
 
-
     def buy(self, user):
         purchased_item = PurchasedItems(user_id=user.id, vehicle_id=self.id)
         self.owner = user.id
@@ -151,18 +151,25 @@ class Vehicles(db.Model):
         db.session.add(purchased_item)
         db.session.commit()
     
-    
     def delete_vehicle(self):
         db.session.delete(self)
         db.session.commit()
-
-   
+    
+    @staticmethod
+    def filtered_vehicle(cartype, price):
+        filtered_items = Vehicles.query.filter(and_(Vehicles.price == price, Vehicles.car_type == cartype)).all()
+        print(filtered_items)
+    
 
 class Cart(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     
     vehicle_id = db.Column(db.Integer(), db.ForeignKey('vehicles.id'))
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
+
+    @staticmethod
+    def count_user_items(user_id):
+        pass
 
     def remove_from_cart(self):
         db.session.delete(self)

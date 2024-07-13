@@ -4,12 +4,12 @@
     <div class="modal-dialog">
       <div class="modal-content  text-white text-monospace" style="background: #928f8f;">
         <div class="modal-header">
-          <h5 class="modal-title " id="cartModalLabel{{ item.id }}">Add to cart</h5>
+          <h5 class="modal-title " id="cartModalLabel{{ item.id }}">Purchase confirmation</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
   
         <div class="modal-body">          
-            Are you sure you want to purchase {{item.model}} ? for  ${{item.price}}
+            Purchase {{item.model}} for  ${{item.price}} ? 
                    
         </div>
   
@@ -32,13 +32,12 @@
     <div class="modal-dialog">
         <div class="modal-content  text-white text-monospace" style="background: #928f8f;">
         <div class="modal-header">
-            <h5 class="modal-title " id="removeModalLabel{{ item.id }}">Add to cart</h5>
+            <h5 class="modal-title " id="removeModalLabel{{ item.id }}">Remove from cart</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="modal-body">          
-            remove {{item.model}} from cart
-                    
+            remove {{item.model}} from cart ?                
         </div>
 
         <div class="modal-footer">
