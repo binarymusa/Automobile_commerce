@@ -25,7 +25,7 @@ SET car_type =
     END
 WHERE id IN ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
 
-*/
+ */
 
 
 --  USE Automobile;
@@ -33,16 +33,7 @@ WHERE id IN ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
 
 SELECT * FROM vehicles
 -- SELECT * FROM vehicles WHERE  
-/* UPDATE vehicles
-SET image_link = 
-    CASE 
-        WHEN id IN ('16') THEN 'static/images/m3seriesblue.jpg'
-        WHEN id IN ('17') THEN 'static/images/m5black.jpg'
-        WHEN id IN ('19') THEN 'static/images/mercedescclass.jpg'
-        WHEN id IN ('21') THEN 'static/images/Mercedes-S-Class.jpg'
-        ELSE image_link
-    END
-WHERE id IN ('16', '17', '19', '21'); */
+-- UPDATE vehicles SET image_link = 'static/images/roverevoque.jpg' WHERE id = 28;
 
 -- SELECT * FROM user
 -- SELECT * FROM user WHERE user_role = 1

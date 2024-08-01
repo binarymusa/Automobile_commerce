@@ -177,7 +177,7 @@ def cart_page():
          
          })
       length_of_list = len(cart_vehicle_details)
-      print(cart_vehicle_details)
+      # print(cart_vehicle_details)
          
 
    if request.method == 'POST':
