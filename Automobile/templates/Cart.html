@@ -14,7 +14,10 @@
                     {% include 'includes/cart_modal.html' %}
                                 
                     <div class="col-md-4 mx-auto">
-                        <div class="booking-cards mb-1 text-white text-dark rounded" style="border: 2px dotted " >
+                        <div class="booking-cards mb-1 text-white rounded" style="border: 2px dotted " >
+                            <div class="m-1" style="height: 200px;">
+                                <img class="w-100 h-100" src="{{item.image_link}}">
+                            </div>
                             <div class="booking-card text-center py-3">
                                 <p><strong>model:</strong> {{ item.model }}</p>
                                 <p><strong>description:</strong> {{ item.description }}</p>

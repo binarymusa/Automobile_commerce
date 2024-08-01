@@ -13,7 +13,7 @@ def load_user(user_id):
 
 # data fetched from the user
 class User(db.Model, UserMixin):
-    id = db.Column(db.Integer(), primary_key=True) # primary-key column named id
+    id = db.Column(db.Integer(), primary_key=True) # primary-key column
     user_role = db.Column(db.Integer(), db.ForeignKey('roles.id'))
 
     username = db.Column(db.String(length=30), nullable=False)
@@ -128,6 +128,7 @@ class Vehicles(db.Model):
     price = db.Column(db.Integer(), nullable=False) 
     description = db.Column(db.String(length=1024), nullable=False)
     car_type = db.Column(db.String(length=30), unique=False)
+    image_link = db.Column(db.String(length=1024), nullable =True, unique= False)
     # car_units = db.Column(db.Integer(), nullable=False, unique=False)
    
     # owner = db.Column(db.Integer(), db.ForeignKey('user.id'))

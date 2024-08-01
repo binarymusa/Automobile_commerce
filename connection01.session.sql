@@ -31,10 +31,20 @@ WHERE id IN ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
 --  USE Automobile;
 --  UPDATE user SET username = 'shrub' WHERE id = 26;
 
--- SELECT * FROM vehicles
+SELECT * FROM vehicles
 -- SELECT * FROM vehicles WHERE  
+/* UPDATE vehicles
+SET image_link = 
+    CASE 
+        WHEN id IN ('16') THEN 'static/images/m3seriesblue.jpg'
+        WHEN id IN ('17') THEN 'static/images/m5black.jpg'
+        WHEN id IN ('19') THEN 'static/images/mercedescclass.jpg'
+        WHEN id IN ('21') THEN 'static/images/Mercedes-S-Class.jpg'
+        ELSE image_link
+    END
+WHERE id IN ('16', '17', '19', '21'); */
 
-SELECT * FROM user
+-- SELECT * FROM user
 -- SELECT * FROM user WHERE user_role = 1
 -- UPDATE user SET user_role = 1 WHERE id = 29
 

@@ -173,9 +173,11 @@ def cart_page():
             'price': vehicle.price,
             'description': vehicle.description,
             'car_type': vehicle.car_type,
+            'car_image': vehicle.image_link
          
          })
       length_of_list = len(cart_vehicle_details)
+      print(cart_vehicle_details)
          
 
    if request.method == 'POST':
@@ -233,7 +235,7 @@ def purchases_page():
          'price': vehicle.price,
          'description': vehicle.description,
          'car_type': vehicle.car_type,
-        
+         'car_image': vehicle.image_link
       })
 
    return render_template('purchased.html', purchased_vehicle_details=purchased_vehicle_details)
