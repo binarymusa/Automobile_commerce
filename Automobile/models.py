@@ -2,8 +2,7 @@
 from Automobile import db,login_manager
 from Automobile import bcrypt
 from flask_login import UserMixin
-import re
-from sqlalchemy import or_, and_
+from flask import flash
 
 
 # tells Flask-Login that the function (load_user) should be used to retrieve a user object when a user is logged in and their session needs to be managed.
@@ -19,18 +18,18 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(length=30), nullable=False)
     email_address = db.Column(db.String(length=50), nullable=False, unique=True)
     password_hash = db.Column(db.String(length=60), nullable=False)
-    budget = db.Column(db.Integer(), nullable=False, default=1000000) # defines the code to the default budget money
+    budget = db.Column(db.Integer(), nullable=False, default=1000000) # default budget money
     
     role = db.relationship('Roles', backref='users')
-    cart_relationship = db.relationship('Cart', backref='users', lazy=True)
-    purchased_relationship = db.relationship('PurchasedItems', backref='users', lazy=True)
+    cart_rltship = db.relationship('Cart', backref='users', lazy=True)
+    purchased_rltship = db.relationship('PurchasedItems', backref='users', lazy=True)
+    visit_rltship = db.relationship('VisitingRecords', backref='users', lazy=True)
     # vehicle = db.relationship('Vehicles', backref='owned_user', lazy=True)
 
     @property
     def prettier_budget(self):
-        if len(str(self.budget)) >= 4:
-            # unfinished items here
-            return f'{self.budget}'
+        if len(str(self.budget)) >= 4:            
+            return f'{self.budget:,d}'
         else:
             return f"{self.budget}"
     
@@ -64,32 +63,10 @@ class User(db.Model, UserMixin):
             for user in users:
                 user.budget = 0
             db.session.commit()
-            return f"Budget of user with ID  has been set to zero."
+            return f"Budget of users with role's 1 has been set to zero."
         else:
             return 'No users found with the specified role.'
 
-
-    #function to dissasociate a user with a car
-    @staticmethod
-    def dissasociate_user_car(user_id):        
-        user = User.query.get(user_id)
-
-        if user:
-            # Disassociate all vehicles owned by the user
-            # Combine cart items and purchased items into a single query result
-            vehicles_owned_by_user = Cart.query.filter_by(user_id=user_id).union(
-                PurchasedItems.query.filter_by(user_id=user_id)
-            ).all()
-            
-            for vehicle in vehicles_owned_by_user:
-                vehicle.owner = None
-
-            user.budget = 1000000
-            db.session.commit()
-            
-            return True
-        else:
-            return False
 
     # method to dissasociate a user with a car, then deleting them
     @staticmethod
@@ -120,35 +97,57 @@ class Roles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     role_name = db.Column(db.String(length=30), nullable=False, unique=True)
 
-   
+
+class Importations(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    model = db.Column(db.String(length=60), nullable=False, unique=False)
+    chasis_No = db.Column(db.String(length=60), nullable=False, unique=True)
+    arrival_date = db.Column(db.Date(), nullable=False, unique=False)
+    order_date = db.Column(db.Date(), nullable=False, unique=False)
+
+
 # Vehicles database
 class Vehicles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     model = db.Column(db.String(length=60), nullable=False, unique=False)
     price = db.Column(db.Integer(), nullable=False) 
     description = db.Column(db.String(length=1024), nullable=False)
+    year = db.Column(db.Integer(), nullable=False)
     car_type = db.Column(db.String(length=30), unique=False)
     image_link = db.Column(db.String(length=1024), nullable =True, unique= False)
-    # car_units = db.Column(db.Integer(), nullable=False, unique=False)
+    vehicle_units = db.Column(db.Integer(), nullable=False, unique=False)
    
     # owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
-    cart_relationship = db.relationship('Cart', backref='vehicle', lazy=True)
-    purchased_relationship = db.relationship('PurchasedItems', backref='vehicle', lazy=True)
+    cart_rltship = db.relationship('Cart', backref='vehicle', lazy=True)
+    purchased_rltship = db.relationship('PurchasedItems', backref='vehicle', lazy=True)
+    visit_rltship = db.relationship('VisitingRecords', backref='vehicle', lazy=True)
 
    
     def __repr__(self):
         return f'Item {self.model}'
+
+    @staticmethod
+    def addVehicle():
+        pass
     
-    def add_to_cart(self, user):
-        cart_item = Cart(user_id=user.id, vehicle_id=self.id)
+    """ def booked_vehicle(self, user):
+        booked_item = VisitingRecords(user_id=user.id, vehicle_id=self.id)
         self.owner = user.id
+        self.vehicle_units -= 1
+        db.session.add(booked_item)
+        db.session.commit() """
+
+    def add_to_cart(self, user):
+        cart_item = Cart(user_id=user.id, vehicle_id=self.id)        
+        # self.vehicle_units -= 1 
         db.session.add(cart_item)
         db.session.commit()
-
+ 
     def buy(self, user):
         purchased_item = PurchasedItems(user_id=user.id, vehicle_id=self.id)
-        self.owner = user.id
+        # self.owner = user.id
         user.budget -= self.price
+        self.vehicle_units -= 1
         db.session.add(purchased_item)
         db.session.commit()
     
@@ -156,11 +155,15 @@ class Vehicles(db.Model):
         db.session.delete(self)
         db.session.commit()
     
-    @staticmethod
-    def filtered_vehicle(cartype, price):
-        filtered_items = Vehicles.query.filter(and_(Vehicles.price == price, Vehicles.car_type == cartype)).all()
-        print(filtered_items)
-    
+
+class VisitingRecords(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    visit_date = db.Column(db.DateTime(), unique=False, nullable=False)
+    carof_review = db.Column(db.Integer(), db.ForeignKey('vehicles.id'))
+    cust_elgbility = db.Column(db.String(length=30), nullable=False, unique=False)
+    booking_status = db.Column(db.String(length=30), nullable=False, unique=False)
+
 
 class Cart(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -181,5 +184,14 @@ class PurchasedItems(db.Model):
 
     vehicle_id = db.Column(db.Integer(), db.ForeignKey('vehicles.id'))
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
+
+    # @staticmethod
+    # def clear_purchased_items(user_id): 
+    #     user = User.query.get(user_id)
+
+    #     if user:
+    #         items = PurchasedItems.query.filter_by(user_id=user_id).all()
+    #         db.session.delete(items)
+    #         db.session.commit()
     
     

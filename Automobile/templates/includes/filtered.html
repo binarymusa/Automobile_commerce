@@ -1,0 +1,59 @@
+
+{% extends 'includes/base.html' %}
+
+{% block title %}
+    Filter_page
+{% endblock %}
+
+{% block content %}
+    <div class="row mx-auto" style="width: 95%;">
+                                                            
+        {% for vehicle in filtered_items  %}
+            <!-- always add the includes file right after the loop -->
+            {% include 'includes/market_modal.html' %} 
+            <div class="col-md-4" >
+                <div class="booking-cards my-2 text-white rounded mx-auto onhover2"  id="filtered" >
+                    <div class="bg-dark-subtle text-dark m-1 rounded-2" style="height: 200px;">
+                        <img class="w-100 h-100 rounded-2" src="{{vehicle.image_link}}">                                   
+                    </div>                    
+                    <div class="booking-card text-center py-3 rounded-1 onhover2">
+                        <p><strong>model:</strong> {{ vehicle.model }}</p>
+                        <p><strong>description:</strong> {{ vehicle.description }}</p>
+                        <p><strong>price:</strong> ${{ vehicle.price }}</p>
+                        
+                        {% if vehicle.vehicle_units == 0 %}
+                            <p class="text-warning"><strong>units:</strong> None </p>
+
+                            <button type="button" class="btn btn-secondary disabled mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ vehicle.id }}">
+                            Cart +
+                            </button>                                      
+
+                            <button type="button" class="btn btn-success disabled mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{ vehicle.id }}">
+                            Purchase
+                            </button>
+                            
+                        {% else %}
+                            <p><strong>units:</strong>  {{ vehicle.vehicle_units}}  </p>
+
+                            <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ vehicle.id }}">
+                            Cart +
+                            </button>                                      
+
+                            <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{ vehicle.id }}">
+                            Purchase
+                            </button>                                  
+                        {% endif %}
+                        
+                    </div>
+                </div>
+            </div>
+                                                        
+            {% if loop.index % 3 == 0 %}
+                </div> <div class="row mx-auto" style="width: 95%;">
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+{% endblock %}
+

@@ -15,25 +15,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
 </head>
 
-<body>
+<body class="bg-dark">
     
     {% if current_user.is_authenticated %}
         <nav class="navbar-expand bg-dark pt-3 px-4">
-            <div class="container-fluid  p-2 rounded bg-white font-monospace row mx-auto">
+            <div class="container-fluid  p-2 rounded font-monospace row mx-auto" style="background-color: rgba(255, 255, 255, 0.92)">
                 <div class="col-10">
                     <a class="navbar-brand text-success mx-2" href="#" style="font-size:20px" id="auto">Automobile</a>
                 </div>
                 
-                <div class="col text-success">
-                <strong class="text-black">User: </strong> {{current_user.username}}
+                <div class="col text-dark">
+                    <strong class="text-success">User: </strong> {{current_user.username}}
                 </div>
             </div>
 
         </nav>
     
     {% else %}
-        <nav class="navbar-expand bg-dark pt-3 px-4">
-            <div class="container-fluid  p-2 rounded bg-white font-monospace row mx-auto">
+        <nav class="navbar-expand bg-dark pt-3 px-4" >
+            <div class="container-fluid  p-2 rounded font-monospace row mx-auto" style="background-color: rgba(255, 255, 255, 0.92) ">
                 <div class="col-10">
                     <a class="navbar-brand text-success mx-2" href="#" style="font-size:20px" id="auto">Automobile</a>
                 </div>
@@ -45,7 +45,7 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-                <div class="alert alert-{{category}}">
+                <div class="alert alert-{{category}} mx-4 mt-1">
                     <button type="button" class="m1-2 mb-1 close" data-bs-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

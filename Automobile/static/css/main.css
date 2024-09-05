@@ -1,3 +1,4 @@
+/* -        -   common PAGE CSS    -       - */
 
 .nav-item a{
     color: black;
@@ -9,6 +10,9 @@
 .cust-m2{
     margin-right: 30%;
 }
+
+/* -        -   Welcome.html PAGE CSS    -       - */
+
 .progress-bar{
    animation: fillWidht 10s linear forwards;
 }
@@ -46,6 +50,8 @@
 
 }
 
+/* -        -   Welcome_adm.html PAGE CSS    -       - */
+
 #key{
     animation: fillInOut 2s linear 5 forwards;
 }
@@ -62,11 +68,14 @@
 #shadow h4 strong{
     text-shadow: 0 0 2px  #f0f8ff; /* Horizontal offset, vertical offset, blur radius, and color */
 }
+
+/* -        -   market.html PAGE CSS    -       - */
+
 #bmw,#audi,#merc,#rangerover{
     height: 100vh; width: 10%;
     writing-mode: vertical-rl; /* vertical right-to-left */
     text-orientation: upright; /* Ensures the text orientation is upright */
-    background: #928f8fb6;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.36), transparent);
     text-shadow: 0 0 2px  #f0f8ff;
 }
 
@@ -79,15 +88,183 @@
     font-family: monospace;
 }
 
+#lnk{
+    color: lightskyblue;
+}
+#filtered{
+    animation: lightup 10s linear 2;
+}
+
+/* -        -   filtered.html PAGE CSS    -       - */
+
+@keyframes lightup {
+    0%{
+        box-shadow: 0 0 20px rgb(43, 89, 187);
+    }
+    20%{
+        box-shadow: 0 0 20px whitesmoke; 
+    }
+    40%{
+        box-shadow: 0 0 20px  rgb(43, 89, 187);
+    }
+    60%{
+        box-shadow: 0 0 20px  whitesmoke;
+    }
+    80%{
+        box-shadow: 0 0 20px  rgb(43, 89, 187);
+    }
+    100%{
+        box-shadow: 0 0 20px  whitesmoke;
+    }
+
+}
+
+/* -        -   cart.html PAGE CSS    -       - */
+
+#btndance{
+    
+    animation: btndancce 1s linear 4.5;
+}
+@keyframes btndancce {
+    0%{
+        box-shadow: 0 0 3px #6c757d;
+        transform: scale(0.5,0.5);
+        transform: translate(0%, 10%);
+        transform: skewY(2deg)
+    }
+    10%{
+        
+        transform: translate(0%, -10%);
+        transform: skewY(-2deg)
+    }
+    20%{
+        
+        transform: translate(0%, 10%);
+        transform: skewY(2deg)
+    }
+    30%{
+        transform: scale(0.6,0.6);
+        transform: translate(0%, -10%); 
+        transform: skewY(-2deg)       
+    }
+    40%{
+        box-shadow: 0 0 3px #6c757d; 
+        transform: translate(0%, 10%);
+        transform: skewY(2deg)
+    }
+    50%{
+        transform: scale(0.7,0.7);
+        transform: translate(0%, -10%);
+        transform: skewY(-2deg)
+    }
+    60%{
+        transform: translate(0%, 10%);
+        transform: skewY(2deg)
+    }
+    70%{
+        transform: translate(0%, -10%);
+        transform: skewY(-2deg)
+    }
+    80%{
+        box-shadow: 0 0 3px  #6c757d;
+        transform: scale(0.8,0.8);
+        transform: translate(0%, 10%);
+        transform: skewY(2deg)
+    }
+    90%{
+        transform: translate(0%, -10%);
+        transform: skewY(-2deg)
+    }
+    100%{
+        box-shadow: 0 0 3px  #6c757d;
+        transform: scale(1,1);
+        /* transform: translate(0%, 10%); */
+        transform: skewY(0deg)
+    }
+
+}
+#btndance2{    
+    animation: btndancce2 1s linear 4.5;
+}
+@keyframes btndancce2 {
+    0%{
+        box-shadow: 0 0 20px #198754;
+        transform: scale(0.3,0.3);
+        transform: translate(0%, 10%);
+        transform: skewY(2deg)
+    }
+    10%{
+        
+        transform: translate(0%, -10%);
+        transform: skewY(-2deg)
+    }
+    20%{
+        
+        transform: translate(0%, 10%);
+        transform: skewY(2deg)
+    }
+    30%{
+        transform: scale(0.4,0.4);
+        transform: translate(0%, -10%); 
+        transform: skewY(-2deg)       
+    }
+    40%{
+        box-shadow: 0 0 20px #198754; 
+        transform: translate(0%, 10%);
+        transform: skewY(2deg)
+    }
+    50%{
+        transform: scale(0.5,0.5);
+        transform: translate(0%, -10%);
+        transform: skewY(-2deg)
+    }
+    60%{
+        transform: translate(0%, 10%);
+        transform: skewY(2deg)
+    }
+    70%{
+        transform: translate(0%, -10%);
+        transform: skewY(-2deg)
+    }
+    80%{
+        box-shadow: 0 0 20px  #198754;
+        transform: scale(0.8,0.8);
+        transform: translate(0%, 10%);
+        transform: skewY(2deg)
+    }
+    90%{
+        transform: translate(0%, -10%);
+        transform: skewY(-2deg)
+    }
+    100%{
+        box-shadow: 0 0 20px  #198754;
+        transform: scale(1,1);
+        /* transform: translate(0%, 10%); */
+        transform: skewY(0deg)
+    }
+
+}
+
+/* -        -   login & signup PAGE CSS    -       - */
+
 #container {
     width: 300px;
     margin: 10vh auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f9f9f9;
+    /* background-color: #f9f9f9; */
+    background-color: rgba(255, 255, 255, 0.92);
 }
-input[type="text"], input[type="email"], input[type="password"], input[type="submit"] {
+#container2 {
+    width: 50%;
+    margin: 2vh auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.92);
+}
+input[type="text"], input[type="number"], input[type="url"], textarea, input[type="email"], input[type="password"], input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin: 5px 0;
@@ -113,10 +290,76 @@ input[type="submit"]:hover {
 .onhover:hover{
     box-shadow: 0 0 10px  whitesmoke;
 }
+.onhover2{
+    box-shadow: 0 0 10px  whitesmoke;
+}
+
 #foot-links{
     list-style: none;
 }
 #foot-links a{
     text-decoration: none;
     color: antiquewhite;
+}
+
+/* -        -   payment.html FORM CSS    -       - */
+
+.payment-form {
+    background-color: #fff;
+    border-radius: 8px;
+    margin: auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 1000px;
+}
+.payment-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+.payment-form .form-group {
+    margin-bottom: 15px;
+}
+.payment-form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+.payment-form .form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.payment-form .form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.payment-form .form-group .small-input {
+    width: calc(50% - 5px);
+    display: inline-block;
+    margin-right: 10px;
+}
+.payment-form .form-group .small-input:last-child {
+    margin-right: 0;
+}
+.payment-form button {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.payment-form button:hover {
+    background-color: #45a049;
 }

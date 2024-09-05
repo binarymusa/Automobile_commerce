@@ -31,39 +31,52 @@ WHERE id IN ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
 --  USE Automobile;
 --  UPDATE user SET username = 'shrub' WHERE id = 26;
 
-SELECT * FROM vehicles
--- SELECT * FROM vehicles WHERE  
--- UPDATE vehicles SET image_link = 'static/images/roverevoque.jpg' WHERE id = 28;
+-- SELECT * FROM importations
+
+-- SELECT * FROM vehicles
+-- UPDATE vehicles SET price = 80000 WHERE id = 30
+-- SELECT * FROM vehicles WHERE 
+/* UPDATE vehicles 
+SET year = 
+    CASE 
+        WHEN id IN ('16', '17', '18', '19', '20', '21', '22', '23', '31') THEN '2024'
+        WHEN id IN ('28') THEN '2021'
+        WHEN id IN ('27') THEN '2022'
+        WHEN id IN ('30') THEN '2023'
+        ELSE car_type
+    END
+WHERE id IN ('30' , '31') */
 
 -- SELECT * FROM user
 -- SELECT * FROM user WHERE user_role = 1
 -- UPDATE user SET user_role = 1 WHERE id = 29
+DELETE FROM user WHERE id = 38
 
 -- SELECT * FROM roles
--- SELECT * FROM roles WHERE  
+-- SELECT * FROM roles WHERE 
+-- DELETE FROM roles WHERE
+
+-- SELECT * FROM importations
+-- SELECT * FROM roles WHERE 
+
+-- SELECT * FROM visiting_records
+-- SELECT * FROM visiting_records WHERE
 
 -- SELECT * FROM cart
 -- SELECT * FROM cart WHERE  
+-- DELETE FROM cart WHERE
 
 -- SELECT * FROM purchased_items
 -- SELECT * FROM purchased_items WHERE 
+-- DELETE FROM purchased_items WHERE vehicle_id =
 
-
--- DELETE FROM cart WHERE
--- DELETE FROM purchased_items WHERE vehicle_id = 
--- DELETE FROM user WHERE id =  31
--- DELETE FROM roles WHERE  
-
-
-/* INSERT INTO vehicles (price, description, model, car_type)
+/* 
+INSERT INTO importations (model, chasis_No, arrival_date, order_date)
 VALUES 
 (
-    '72000',
-    'Blue cabriolete, 2024 model year, 4.0L V-8 engine, 453hp',
-    'Audi A8',    
-    'Audi'
-)
- */
+    'Bmw','Bw05T','2024-03-04','2024-05-01'
+) */
+
 
 
 

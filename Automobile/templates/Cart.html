@@ -1,46 +1,51 @@
 
-{% extends 'base.html' %}
+{% extends 'includes/base.html' %}
 
 {% block title %}
     Cart_page
 {% endblock %}
 
 {% block content %}
+    {% if length_of_list  == 0 %}
+        <div class="container-fluid text-white pb-1 font-monospace" >
+            <h4><strong>My Cart</strong></>
+            <div class="text-center text-danger" >No items</div>
+        
+    {% else %}
+        <div class="container-fluid text-white pb-1 font-monospace" >        
+            <h4><strong>My Cart</strong></>
+                <div class="row p-1 mx-auto" style="width: 95%;">
+                    {% for item in cart_vehicle_details %}
+                        {% include 'includes/cart_modal.html' %}
+                                    
+                        <div class="col-md-4 mx-auto">
+                            <div class="booking-cards mb-1 text-white rounded" style="border: 2px dotted " >
+                                <div class="m-1 " style="height: 200px;">
+                                    <img class="w-100 h-100" src="{{item.car_image}}">
+                                </div>
+                                <div class="booking-card text-center py-3">
+                                    <p><strong>model:</strong> {{ item.model }}</p>
+                                    <p><strong>description:</strong> {{ item.description }}</p>
+                                    <p><strong>car_type:</strong> {{ item.car_type }}</p>         
+                                    <p><strong>price:</strong> ${{ item.price }}</p> 
+                                    
+                                    <button type="button" class="btn btn-secondary mb-2" id="btndance" data-bs-toggle="modal" data-bs-target="#removeModal{{ item.id }}">
+                                        Cart -
+                                    </button>
 
-    <div class="container-fluid text-white pb-1 font-monospace" >
-        <h4><strong>My Cart</strong></>
-            <div class="row p-1">
-                {% for item in cart_vehicle_details %}
-                    {% include 'includes/cart_modal.html' %}
-                                
-                    <div class="col-md-4 mx-auto">
-                        <div class="booking-cards mb-1 text-white rounded" style="border: 2px dotted " >
-                            <div class="m-1" style="height: 200px;">
-                                <img class="w-100 h-100" src="{{item.image_link}}">
+                                    <button type="button" class="btn btn-success mb-2" id="btndance2" data-bs-toggle="modal" data-bs-target="#cartModal{{ item.id }}">
+                                        Purchase
+                                    </button>
+                                </div>  
                             </div>
-                            <div class="booking-card text-center py-3">
-                                <p><strong>model:</strong> {{ item.model }}</p>
-                                <p><strong>description:</strong> {{ item.description }}</p>
-                                <p><strong>car_type:</strong> {{ item.car_type }}</p>         
-                                <p><strong>price:</strong> ${{ item.price }}</p> 
-                                
-                                <button type="button" class="btn btn-secondary mb-2" data-bs-toggle="modal" data-bs-target="#removeModal{{ item.id }}">
-                                    Cart -
-                                </button>
 
-                                <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ item.id }}">
-                                    Purchase
-                                </button>
-                            </div>  
                         </div>
 
-                    </div>
-
-                    {% if loop.index % 2 == 0 %}
-                        <div class="row">
-                    {% endif %}
-                             
-                {% endfor %}                                 
-    </div>
-
+                        {% if loop.index % 3 == 0 %}
+                            <div class="row">
+                        {% endif %}
+                                
+                    {% endfor %}                                 
+        </div>
+    {% endif %}
 {% endblock %}

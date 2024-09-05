@@ -9,17 +9,21 @@
         </div>
 
         <div class="modal-body">          
-            Are you sure you want to purchase <br> {{vehicle.model}} ? for <br> ${{vehicle.price}}
+          Are you sure you want to purchase <br> {{vehicle.model}} for <br> ${{vehicle.price}} ?
                    
         </div>
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           
-          <form method="post" action="{{url_for('market_page')}}">
+          <!-- <form method="post" action="{{url_for('market_page')}}">
             <input id="purchased_vehicle" name="purchased_vehicle" type="hidden" value="{{vehicle.id}}">
             <button type="submit" class="btn btn-primary">Purchase</button>
-          </form>
+          </form> -->
+
+          <a  class="btn bg-success text-white mb-2" href="{{url_for('payment_page')}}">
+            Purchase
+          </a>
 
         </div>
       </div>
@@ -32,16 +36,12 @@
   <div class="modal-dialog">
     <div class="modal-content  text-white" style="background: #928f8f;">
       <div class="modal-header">
-        <h5 class="modal-title " id="cartModalLabel{{ vehicle.id }}">Add to cart</h5>
+        <h5 class="modal-title " id="cartModalLabel{{ vehicle.id }}">Add to cart...</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">          
-          Are you sure you want to add to cart ?<br>
-          model: {{vehicle.model}} <br>
-          description: {{vehicle.description}} <br>
-          price: ${{vehicle.price}}
-                 
+        {{vehicle.description}} <br> {{vehicle.model}} ?                                 
       </div>
 
       <div class="modal-footer">

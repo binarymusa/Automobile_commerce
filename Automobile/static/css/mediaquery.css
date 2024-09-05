@@ -8,7 +8,9 @@
     .fixed-large{
         position: absolute;
     }
-    
+    .payment-form{
+        width: 600px;
+    }
 }
 @media (min-width: 761px) and (max-width: 854px) {
     #bmw h4, #merc h4, #audi h4{
@@ -55,8 +57,9 @@
      margin-right: 0;
     }
     #veh{
-        overflow-x: auto;
-               
+        overflow-x: auto;               
     }
-   
+    .payment-form,#container2{
+        width: 325px;
+    }
 }
