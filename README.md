@@ -1,6 +1,7 @@
 The PROJECT covers an Automobile e-comerce site based on flask.
 
 Files in the app include :
+
   STATIC FILES(includes css,html templates, javascript and images used)
   INIT FILE
   FORMS, MODELS(databse tables)
