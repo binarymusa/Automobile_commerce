@@ -7,33 +7,33 @@
 
 {% block content %}
 
-<div class="d-flex font-monospace">
+<div class="d-flex font-monospace text-white">
     <!-- left fixed bar -->
-        <div class="col-lg-2 col-12 mb-3  rounded text-center py-3 overflow-y-auto position-fixed " id="fix" style="left: 10px;height:89vh; background-color: rgba(255, 255, 255, 0.90)">
+        <div class="col-lg-2 col-12 mb-3  text-center py-3 overflow-y-auto position-fixed " id="fix" style="left: 10px; background: linear-gradient( rgba(255, 254, 254, 0.281), transparent);">
             <div class="mx-auto" style="width: fit-content;">
               <h6>Vehicle Models</h6>
               <nav>
                     <ul class="navbar-nav m-auto " style="width: fit-content;">
                         <li class="nav-item">
-                            <a  class="nav-link " href="#bmw_section">
+                            <a  class="nav-link text-white" href="#bmw_section">
                                 BMW
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a  class="nav-link" href="#mercedes_section">
+                            <a  class="nav-link text-white" href="#mercedes_section">
                                 Mercedes
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#rover_section">
+                            <a class="nav-link text-white" href="#rover_section">
                                 Rangerover
                             </a>
                         </li>
 
                         <li class="nav-item">
-                          <a class="nav-link" href="#audi_section" id="aud">
+                          <a class="nav-link text-white" href="#audi_section" id="aud">
                               Audi
                           </a>
                       </li>
@@ -49,16 +49,16 @@
             <form class="mx-auto " method="post" action="{{url_for('filtered_page')}}">
               
               <label for="model">Model: </label>
-              <input placeholder="i.e,bmw,audi..."  type="text" id="model" name="model"  >
+              <input placeholder="i.e,bmw,audi..."  type="text" id="model" name="model" >
               
               <label for="price">Price(range): </label>             
-              <input placeholder="i.e,from..." type="text" id="price" name="price">
+              <input placeholder="i.e,from..." type="text" id="price" name="price" >
               <input placeholder="i.e,to..." type="text" id="price" name="price2">
 
               <label for="year">Year: </label>             
               <input placeholder="i.e,2020..." type="text" id="year" name="year">
                     
-              <button type="submit" class="nav-link mx-5 rounded px-4 py-2 " title="search" style="background-color: #271e1eb7;">
+              <button type="submit" class="nav-link mx-5 rounded px-4 py-2 " title="search" style="background-color: #a3a3a3b7;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-search" viewBox="0 0 16 16">
                   <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                 </svg>
@@ -72,15 +72,11 @@
         
  
         <!-- middle fixed bar -->
-        <div class="col-lg-10 col-12 text-white text-center"  style="margin-left: auto;">
+        <div class="col-lg-9 col-12 text-white text-center ms-auto me-4">
             
-          <div class="mt-5 " id="bmw_section">
+          <div class="" id="bmw_section">
                 <!-- <h4><strong>BMW</strong></h4> -->
-                <div class="container-fluid row">
-                    <div class="col-2 mx-3 text-white rounded-1" id="bmw" >
-                        <h4>BMW</h4>
-                    </div>
-                    
+                <div class="container-fluid row ">                             
                     <div class="col ">
                         <div class="mt-1" style="height: 72vh;">
                             <div id="carouselExampleControls" class="m-1 carousel-fade" data-bs-ride="carousel">
@@ -154,15 +150,16 @@
                        
                   </div>
                 </div>
+
+                <div class="col-1 mx- text-white" id="bmw" >
+                  <h4>BMW</h4>
+                </div>
             
             </div>
 
             <div class="my-3 " id="mercedes_section" >
                 <!-- <h4><strong>MERCEDES</strong></h4> -->
-                <div class="container-fluid row">
-                    <div class="col-2 mx-3 text-white rounded-1" id="merc">
-                        <h4>MERCEDES BENZ</h4>
-                    </div>
+                <div class="container-fluid row">                   
 
                     <div class="col " >
                         <div class="mt-1" style="height: 72vh; ">
@@ -232,16 +229,16 @@
                         </div>
                   </div>
                 </div>
-                
-                
+
+                <div class="col-2 mx-3 text-white" id="merc">
+                  <h4>MERCEDES BENZ</h4>
+                </div>
+
             </div>
 
             <div class="my-3 " id="rover_section">
                 <!-- <h4><strong>RANGEROVER</strong></h4> -->
                 <div class="container-fluid row">
-                    <div class="col-2 mx-3 text-white rounded-1" id="audi"  >
-                        <h4>RANGEROVER</h4>
-                    </div>
 
                     <div class="col" >
                         <div class="mt-1" style="height: 72vh; ">
@@ -312,6 +309,10 @@
                         </div>
                   </div>
                 </div>
+
+                <div class="col-2 mx-3 text-white" id="audi"  >
+                  <h4>RANGEROVER</h4>
+                </div>
                 
             </div>
 
@@ -319,10 +320,7 @@
 
         <div class="my-3 " id="audi_section">
           <!-- <h4><strong>AUDI</strong></h4> -->
-          <div class="container-fluid row">
-              <div class="col-2 mx-3 text-white rounded-1" id="bmw" >
-                  <h4>AUDI</h4>
-              </div>
+          <div class="container-fluid row">  
 
               <div class="col">
                   <div class="mt-1" style="height: 72vh;">
@@ -394,6 +392,10 @@
                   </div>
                  
             </div>
+          </div>
+
+          <div class="col-2 mx-3 text-white" id="bmw" >
+            <h4>AUDI</h4>
           </div>
       
       </div>

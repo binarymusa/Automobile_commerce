@@ -46,9 +46,8 @@ def signup_page():
          flash(f'User already exists. Try different credentials', category='danger')
          return redirect(url_for('signup_page'))
       else:
-         #checks for password correctness based on the expression 
+         #checks if the email given matches the expression 
          reg_exp = '^\S+(\@gmail\.com$|\@hotmail\.com$|\@yahoo\.com$)$'
-
          try:
             if (not(re.search(reg_exp, email))):
                flash('Invalid email address!', category='danger')
@@ -127,29 +126,29 @@ def welcome_page():
 def add_vehicle_page():
    if request.method == 'POST':
       items = [
-         request.form['price'],
-         request.form['description'],
-         request.form['model'],
-         request.form['type'],
-         request.form['link'],
-         request.form['units'],
-         request.form['year']
+         request.form['price'], request.form['description'],
+         request.form['model'], request.form['type'], request.form['link'], 
+         request.form['units'], request.form['year']
       ]
+      print(items[5])
+      print(0>int(items[5]))
 
       if items:
-         reg_exp = ''
+         reg_exp = '^\d{4}$'
          try:
             if (not(re.search(reg_exp, items[6]))):
-               pass
-               # flash('invalid date!',category='danger')
-               # return(redirect(url_for('add_vehicle_page')))
+               flash('invalid year or car units!',category='danger')
+               return(redirect(url_for('add_vehicle_page')))
             else:
-               pass
-               # new_vehicle = Vehicles(price=items[0], description=items[1], model=items[2], car_type=items[3], image_link=items[4], vehicle_units=items[5], year=items[6]) 
-               # db.session.add()
-               # db.session.commit()
-               # return redirect(url_for('admin_page'))
-
+               new_vehicle = Vehicles(
+                  price=items[0], description=items[1],
+                  model=items[2], car_type=items[3], 
+                  image_link=items[4], vehicle_units=items[5], 
+                  year=items[6]
+               ) 
+               db.session.add(new_vehicle)
+               db.session.commit()
+               return redirect(url_for('admin_page'))
          except:
             flash('An error occurred!', category='danger')
    else:

@@ -5,6 +5,5 @@ document.addEventListener('DOMContentLoaded', function(){
     
     setTimeout(function() {
         alert.parentNode.removeChild(alert);
-    }, 3000)
-  
+    }, 3000) 
 })
