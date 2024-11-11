@@ -7,10 +7,11 @@
 
 {% block content %}
 
-<div class="d-flex font-monospace text-white">
+<div class="d-flex font-monospace text-white" >
     <!-- left fixed bar -->
-        <div class="col-lg-2 col-12 mb-3  text-center py-3 overflow-y-auto position-fixed " id="fix" style="left: 10px; background: linear-gradient( rgba(255, 254, 254, 0.281), transparent);">
+        <div class="col-lg-2 col-12  text-center overflow-y-auto position-fixed h-100" id="fix" >
             <div class="mx-auto" style="width: fit-content;">
+              <hr>
               <h6>Vehicle Models</h6>
               <nav>
                     <ul class="navbar-nav m-auto " style="width: fit-content;">
@@ -43,7 +44,8 @@
                 </nav>
           </div>
 
-          <div class=" py-2 mx-3">
+          <div class="mx-3">
+            <hr>
             <h6>Filter Search</h6>
            
             <form class="mx-auto " method="post" action="{{url_for('filtered_page')}}">
@@ -53,8 +55,8 @@
               
               <label for="price">Price(range): </label>             
               <input placeholder="i.e,from..." type="text" id="price" name="price" >
-              <input placeholder="i.e,to..." type="text" id="price" name="price2">
-
+              <!-- <input placeholder="i.e,to..." type="text" id="price" name="price2"> -->
+              
               <label for="year">Year: </label>             
               <input placeholder="i.e,2020..." type="text" id="year" name="year">
                     
@@ -69,10 +71,17 @@
           </div>
 
         </div>
-        
- 
-        <!-- middle fixed bar -->
-        <div class="col-lg-9 col-12 text-white text-center ms-auto me-4">
+
+        <div class="col position-fixed" id="side">
+          <a class="btn rounded" id="sc">            
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="100" fill="black" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+            </svg>
+          </a>
+        </div>
+              
+        <!-- middle bar -->
+        <div class="col-lg-10 col-12 text-white text-center" id="mainContent">
             
           <div class="" id="bmw_section">
                 <!-- <h4><strong>BMW</strong></h4> -->
@@ -96,8 +105,7 @@
                         </div>
 
                         <div class=" mt-1">
-                          <div class="row">                          
-                            
+                          <div class="row">                                      
                             {% for vehicle in cars_by_type['bmw'] %}
                             <!-- always add the includes file right after the loop -->
                               {% include 'includes/market_modal.html' %} 
@@ -114,11 +122,11 @@
                                       {% if vehicle.vehicle_units == 0 %}
                                         <p class="text-warning"><strong>units:</strong> None </p>
 
-                                        <button type="button" class="btn btn-secondary disabled mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ vehicle.id }}">
+                                        <button type="button" class="btn btn-secondary disabled mb-2">
                                           Cart +
                                         </button>                                      
 
-                                        <button type="button" class="btn btn-success disabled mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{ vehicle.id }}">
+                                        <button type="button" class="btn btn-success disabled mb-2">
                                           Purchase
                                         </button>
                                         
@@ -145,13 +153,12 @@
                         
                             {% endfor %}
                             
-
                         </div>
                        
                   </div>
                 </div>
 
-                <div class="col-1 mx- text-white" id="bmw" >
+                <div class="col-1 mx-auto text-white" id="bmw" >
                   <h4>BMW</h4>
                 </div>
             
@@ -196,11 +203,11 @@
                                       {% if vehicle.vehicle_units == 0 %}
                                         <p class="text-warning"><strong>units:</strong> None </p>
 
-                                        <button type="button" class="btn btn-secondary disabled mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ vehicle.id }}">
+                                        <button type="button" class="btn btn-secondary disabled mb-2">
                                           Cart +
                                         </button>                                      
 
-                                        <button type="button" class="btn btn-success disabled mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{ vehicle.id }}">
+                                        <button type="button" class="btn btn-success disabled mb-2" >
                                           Purchase
                                         </button>
                                         
@@ -275,11 +282,11 @@
                                       {% if vehicle.vehicle_units == 0 %}
                                         <p class="text-warning"><strong>units:</strong> None </p>
 
-                                        <button type="button" class="btn btn-secondary disabled mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ vehicle.id }}">
+                                        <button type="button" class="btn btn-secondary disabled mb-2">
                                           Cart +
                                         </button>                                      
       
-                                        <button type="button" class="btn btn-success disabled mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{ vehicle.id }}">
+                                        <button type="button" class="btn btn-success disabled mb-2">
                                           Purchase
                                         </button>
 
@@ -358,11 +365,11 @@
                                 {% if vehicle.vehicle_units == 0 %}
                                   <p class="text-warning"><strong>units:</strong> None </p>
 
-                                  <button type="button" class="btn btn-secondary disabled mb-2" data-bs-toggle="modal" data-bs-target="#cartModal{{ vehicle.id }}">
+                                  <button type="button" class="btn btn-secondary disabled mb-2">
                                     Cart +
                                   </button>                                      
 
-                                  <button type="button" class="btn btn-success disabled mb-2" data-bs-toggle="modal" data-bs-target="#purchaseModal{{ vehicle.id }}">
+                                  <button type="button" class="btn btn-success disabled mb-2">
                                     Purchase
                                   </button>
                                   

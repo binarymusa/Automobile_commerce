@@ -1,4 +1,3 @@
-
 from Automobile import app,db
 from flask import redirect, url_for, render_template, flash, session,request
 from flask_login import login_user, logout_user, login_required, current_user
@@ -322,7 +321,6 @@ def purchases_page():
          })
    
    return render_template('purchased.html', purchased_vehicle_details=purchased_vehicle_details)
-
 
 @app.route('/logout')
 def logout_page():

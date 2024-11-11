@@ -4,7 +4,6 @@ from Automobile import bcrypt
 from flask_login import UserMixin
 from flask import flash
 
-
 # tells Flask-Login that the function (load_user) should be used to retrieve a user object when a user is logged in and their session needs to be managed.
 @login_manager.user_loader
 def load_user(user_id):
@@ -52,7 +51,6 @@ class User(db.Model, UserMixin):
     def can_sell(self, vehicle_obj):
         return vehicle_obj in self.vehicle
     
-
     # method to set the admin budget to 0
     # static methods don't have access to the instance (self) or class (cls) objects.
     @staticmethod
@@ -66,7 +64,6 @@ class User(db.Model, UserMixin):
             return f"Budget of users with role's 1 has been set to zero."
         else:
             return 'No users found with the specified role.'
-
 
     # method to dissasociate a user with a car, then deleting them
     @staticmethod
@@ -91,12 +88,10 @@ class User(db.Model, UserMixin):
         else:
             return False
 
-
 # User roles database
 class Roles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     role_name = db.Column(db.String(length=30), nullable=False, unique=True)
-
 
 class Importations(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
@@ -105,8 +100,6 @@ class Importations(db.Model):
     arrival_date = db.Column(db.Date(), nullable=False, unique=False)
     order_date = db.Column(db.Date(), nullable=False, unique=False)
 
-
-# Vehicles database
 class Vehicles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     model = db.Column(db.String(length=60), nullable=False, unique=False)
@@ -122,7 +115,6 @@ class Vehicles(db.Model):
     purchased_rltship = db.relationship('PurchasedItems', backref='vehicle', lazy=True)
     visit_rltship = db.relationship('VisitingRecords', backref='vehicle', lazy=True)
 
-   
     def __repr__(self):
         return f'Item {self.model}'
 
@@ -155,7 +147,6 @@ class Vehicles(db.Model):
         db.session.delete(self)
         db.session.commit()
     
-
 class VisitingRecords(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
@@ -163,7 +154,6 @@ class VisitingRecords(db.Model):
     carof_review = db.Column(db.Integer(), db.ForeignKey('vehicles.id'))
     cust_elgbility = db.Column(db.String(length=30), nullable=False, unique=False)
     booking_status = db.Column(db.String(length=30), nullable=False, unique=False)
-
 
 class Cart(db.Model):
     id = db.Column(db.Integer(), primary_key=True)

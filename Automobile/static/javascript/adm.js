@@ -1,5 +1,4 @@
 
-
 const key = document.querySelector('#key');
 
 key.addEventListener('animationend', () => {

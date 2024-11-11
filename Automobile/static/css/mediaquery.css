@@ -1,3 +1,10 @@
+/* landscape tablets n landscape phones */
+@media (max-width: 1280px) { 
+    #side.move{
+        transform: translate(200px, 35vh);
+    }
+}
+
 @media (max-width: 926px) {
     #fix{
       display: none;
@@ -11,15 +18,32 @@
     .payment-form{
         width: 600px;
     }
+    #side{ 
+        display: none;    
+    }
+    #mainContent{
+        margin-left: auto;
+    }
+    
 }
 @media (min-width: 761px) and (max-width: 854px) {
     #bmw h4, #merc h4, #audi h4{
         font-size: 15px;
     }
+    #side{ 
+        display: none;    
+    }
+    #mainContent {
+        transition: none; /* Disable transition on smaller viewports */
+        margin-left: auto; /* Reset margin for smaller screens */
+    }
 }
 @media (max-width: 760px) {
     #bmw h4, #merc h4, #audi h4{
         font-size: 17px;
+    }
+    #side{ 
+        display: none;    
     }
    
 }

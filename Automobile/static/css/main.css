@@ -1,5 +1,4 @@
 /* -        -   common PAGE CSS    -       - */
-
 .nav-item a{
     color: black;
     color: #271e1eb7;
@@ -8,9 +7,7 @@
     margin-left: 3%;
 }
 
-
 /* -        -   Welcome.html PAGE CSS    -       - */
-
 .progress-bar{
    animation: fillWidht 10s linear forwards;
 }
@@ -49,7 +46,6 @@
 }
 
 /* -        -   Welcome_adm.html PAGE CSS    -       - */
-
 #key{
     animation: fillInOut 2s linear 5 forwards;
 }
@@ -68,7 +64,6 @@
 }
 
 /* -        -   market.html PAGE CSS    -       - */
-
 #bmw,#audi,#merc,#rangerover{
     height: 100vh; width: 10%;
     writing-mode: vertical-rl; /* vertical right-to-left */
@@ -76,16 +71,13 @@
     background: linear-gradient(to left, rgba(255, 255, 255, 0.36), transparent);
     text-shadow: 0 0 2px  #f0f8ff;
 }
-
 #bmw h4, #merc h4, #audi h4{
     text-shadow: 0 0 1px  #04533cd0;    
 }
-
 .bd{
     background: rgb(39, 38, 38);
     font-family: monospace;
 }
-
 #lnk{
     color: lightskyblue;
 }
@@ -94,7 +86,6 @@
 }
 
 /* -        -   filtered.html PAGE CSS    -       - */
-
 @keyframes lightup {
     0%{
         box-shadow: 0 0 20px rgb(43, 89, 187);
@@ -118,7 +109,6 @@
 }
 
 /* -        -   cart.html PAGE CSS    -       - */
-
 #btndance{
     
     animation: btndancce 1s linear 4.5;
@@ -244,7 +234,6 @@
 }
 
 /* -        -   login & signup PAGE CSS    -       - */
-
 #container {
     width: 300px;
     margin: 10vh auto;
@@ -281,7 +270,6 @@ input[type="submit"]:hover {
     background-color: #45a049;
     /* color: #46ad5cc9; */
 }
-
 .fixed-large{
     position: fixed;
 }
@@ -307,9 +295,37 @@ input[type="submit"]:hover {
 #model,#price,#year{
     background-color: #ffffffbb;
 }
+#mainContent{
+    margin-left: 175px;
+}
+#bodyclr{
+    background-color: #212529;
+}
+#bodyclr.white{
+    background-color: rgb(224, 224, 224);
+    color: black;
+}
+#fix{
+    opacity: 0.8;
+    background: linear-gradient( rgba(255, 254, 254, 0.281), transparent);
+    transform: translateX(-240px);
+    transition: transform 0.5s ease;
+}
+#fix.show{
+    transform: translateX(10px);
+}
+#side{ 
+    transform: translate(10px, 35vh);
+    transition: transform 0.5s ease;
+}
+#side.move{
+    transform: translate(250px, 35vh);
+}
+#sc{
+    background: #eeeeee;
+}
 
 /* -        -   payment.html FORM CSS    -       - */
-
 .payment-form {
     background-color: #fff;
     border-radius: 8px;
