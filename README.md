@@ -14,9 +14,14 @@ Files in the app include :
   
   and a RUN.PY file for firing up the app
       
-Codes to run the app.
+Follow the below steps to run the app:
+Ensure you have a version of python installed.
 
-python run.py or python3 run.py
+In the run.py file, give the port number that is free for your computer
+
+To execute the app, open the directory in the terminal and write the code:
+
+  python run.py or python3 run.py
 
 using a wsgi server such as gunicorn with nginx :
     gunicorn -w 4 -b 0.0.0.8000 run:app
