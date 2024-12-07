@@ -1,17 +1,15 @@
 const btn = document.querySelector('#side');
 const btncol = document.querySelector('#sc');
+const rightbtn = btncol.querySelector('.bi-arrow-right')
+const leftbtn = btncol.querySelector('.bi-arrow-left')
 const sidebar = document.querySelector('#fix');
 const mainContent = document.querySelector('#mainContent');
-const dayNight = document.querySelector('#daynight');
-const bgclr = document.querySelector('#bodyclr');
-
-dayNight.addEventListener('click', function(){
-    bgclr.classList.toggle('white');
-});
 
 btn.addEventListener('click', function(){
     sidebar.classList.toggle('show');
     btn.classList.toggle('move');
+    leftbtn.classList.toggle('hidden')
+    rightbtn.classList.toggle('hidden')
 
     if (sidebar.classList.contains('show')) {
         mainContent.classList.remove('col-lg-10');
@@ -26,19 +24,17 @@ btn.addEventListener('click', function(){
     }   
 });
 
-btncol.addEventListener('mouseover', function() {
+btncol.addEventListener('mouseover', () =>  {
     btncol.style.backgroundColor = '#e2e2e2bb';
 });
-btncol.addEventListener('mouseleave', function() {
+btncol.addEventListener('mouseleave', () =>  {
     btncol.style.backgroundColor = ''; 
     btncol.style.display = ''
 });
 
-sidebar.addEventListener('mouseover', function(){
+sidebar.addEventListener('mouseover', () =>  {
     sidebar.style.opacity = '1';
 });
-sidebar.addEventListener('mouseleave', function(){
+sidebar.addEventListener('mouseleave', () =>  {
     sidebar.style.opacity = '';
 });
-
-

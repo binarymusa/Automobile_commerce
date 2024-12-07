@@ -1,5 +1,6 @@
-from Automobile import app,db
-from flask import redirect, url_for, render_template, flash, session,request
+from Automobile import app,db, api
+from flask import redirect, url_for, render_template, flash, session,request, jsonify, Blueprint
+from flask_restful import Resource
 from flask_login import login_user, logout_user, login_required, current_user
 from Automobile.models import User, Vehicles, Cart, PurchasedItems
 from sqlalchemy import or_, and_
@@ -154,9 +155,9 @@ def add_vehicle_page():
       return render_template('includes/addVeh.html')
 
 
-@app.route('/market_page', methods=['GET', 'POST'])
+@app.route('/Yard_page', methods=['GET', 'POST'])
 @login_required
-def market_page():
+def yard_page():
    car_types = ['mercedes', 'bmw', 'rangerover', 'audi']
 
    # Using dictionary comprehension to store the results for each car type
@@ -192,7 +193,7 @@ def market_page():
          else:
             flash('Vehicle currently unavailable', category='danger')
 
-   return render_template('Market.html', cars_by_type=cars_by_type)
+   return render_template('Yard.html', cars_by_type=cars_by_type)
 
 
 @app.route('/filter_page', methods=['GET', 'POST'])
@@ -291,6 +292,17 @@ def cart_page():
 
    return render_template('Cart.html', cart_vehicle_details=cart_vehicle_details, length_of_list = length_of_list)
 
+class my_Cart_Resource(Resource):
+   def get(self, vehicle_id):
+      pass
+   def patch(self, vehicle_id):
+      pass
+   def post(self, vehicle_id):
+      pass
+   def put(self, vehicle_id):
+      pass
+   def delete(self, vehicle_id):
+      pass
 
 @app.route('/my_payment')
 @login_required

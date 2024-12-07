@@ -324,7 +324,9 @@ input[type="submit"]:hover {
 #sc{
     background: #eeeeee;
 }
-
+.hidden{
+    display: none;
+}
 /* -        -   payment.html FORM CSS    -       - */
 .payment-form {
     background-color: #fff;

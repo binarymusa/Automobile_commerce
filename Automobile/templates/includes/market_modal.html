@@ -16,11 +16,6 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           
-          <!-- <form method="post" action="{{url_for('market_page')}}">
-            <input id="purchased_vehicle" name="purchased_vehicle" type="hidden" value="{{vehicle.id}}">
-            <button type="submit" class="btn btn-primary">Purchase</button>
-          </form> -->
-
           <a  class="btn bg-success text-white mb-2" href="{{url_for('payment_page')}}">
             Purchase
           </a>
@@ -47,7 +42,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         
-        <form method="post" action="{{url_for('market_page')}}">
+        <form method="post" action="{{url_for('yard_page')}}">
           <input id="added_vehicle" name="added_vehicle" type="hidden" value="{{vehicle.id}}">
           <button type="submit" class="btn btn-primary">Add to cart</button>
         </form>
