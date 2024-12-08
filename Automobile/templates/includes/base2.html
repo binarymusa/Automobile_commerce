@@ -10,15 +10,15 @@
             {% endblock %}
         </title>
 
+        <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='/images/Atmbico3.jpeg') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/mediaquery.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
     </head>
 
-    <body class="bg-dark">
-        
+    <body id="bodyclr">    
         {% if current_user.is_authenticated %}
-            <nav class="navbar-expand bg-dark pt-3 px-4">
+            <nav class="navbar-expand pt-3 px-4">
                 <div class="container-fluid  p-2 rounded font-monospace row mx-auto" style="background-color: rgba(255, 255, 255, 0.92)">
                     <div class="col-10">
                         <a class="navbar-brand text-success mx-2" href="#" style="font-size:20px" id="auto">Automobile</a>
@@ -32,7 +32,7 @@
             </nav>
         
         {% else %}
-            <nav class="navbar-expand bg-dark pt-3 px-4" >
+            <nav class="navbar-expand pt-3 px-4" >
                 <div class="container-fluid  p-2 rounded font-monospace row mx-auto" style="background-color: rgba(255, 255, 255, 0.92) ">
                     <div class="col-10">
                         <a class="navbar-brand text-success mx-2" href="#" style="font-size:20px" id="auto">Automobile</a>

@@ -5,22 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        {% block title %}
-            Base page3
-        {% endblock %}
+        {% block title %}{% endblock %}
     </title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='/images/Atmbico3.jpeg') }}" >
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/mediaquery.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-
 </head>
 
-
-<body class="bg-dark">
+<body id="bodyclr">
     {% if current_user.is_authenticated %}
-        <nav class="navbar navbar-expand-md bg-dark position-sticky sticky-top px-3">
-
+        <nav class="navbar navbar-expand-md position-sticky sticky-top px-3">
             <div class="container-fluid ">
                 <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
                 <span class="navbar-toggler-icon rounded"></span>
@@ -72,8 +68,7 @@
         </nav>
 
     {% else%}
-        <nav class="navbar navbar-expand-md bg-dark">
-
+        <nav class="navbar navbar-expand-md">
             <div class="container-fluid ">
                 <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
                 <span class="navbar-toggler-icon rounded"></span>

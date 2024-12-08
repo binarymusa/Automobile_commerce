@@ -1,4 +1,3 @@
-
 // connected to the login page
 window.addEventListener('DOMContentLoaded', function() {
     const button = document.querySelector('#btn-1')

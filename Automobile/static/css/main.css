@@ -299,7 +299,8 @@ input[type="submit"]:hover {
     margin-left: 175px;
 }
 #bodyclr{
-    background-color: #212529;
+    /* background-color: #212529; */
+    background-color: #101828;
 }
 #bodyclr.white{
     background-color: rgb(224, 224, 224);

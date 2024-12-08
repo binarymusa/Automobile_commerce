@@ -8,8 +8,6 @@ from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
 
-
-
 app = Flask(__name__)
 
 api = Api(app)
