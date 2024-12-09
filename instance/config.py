@@ -10,6 +10,13 @@ class Config:
     SECRET_KEY = 'c7c52ced176b65114f3e211f'
     SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://MUSTAFA:5m9l<18>_X!@localhost/Automobile'
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+
+    SESSION_TYPE = 'filesystem'
+    SESSION_PERMANENT = False 
+    SESSION_COOKIE_NAME = 'user_session' 
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SECURE = True
+
     MAIL_SERVER = 'smtp.google.com'
     MAIL_PORT = 587    
     MAIL_USE_TLS = True

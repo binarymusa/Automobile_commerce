@@ -1,4 +1,4 @@
-from Automobile import app,db, api
+from Automobile import app,db, api, session
 from flask import redirect, url_for, render_template, flash, session,request, jsonify, Blueprint
 from flask_restful import Resource
 from flask_login import login_user, logout_user, login_required, current_user
@@ -17,6 +17,7 @@ def login_page():
 
       if check_user and check_user.check_password_correction(attempted_password=password):
          login_user(check_user) 
+         session['user_id'] = check_user.id 
 
          #  Access the associated role object via the role relationship
          if check_user.role and check_user.role.role_name == 'Admin':
@@ -30,6 +31,13 @@ def login_page():
          return redirect(url_for('login_page'))
   
    else:
+      user_id = session.get('user_id')
+      if user_id:
+         # User is logged in
+         if check_user.role and check_user.role.role_name == 'Admin':
+               return redirect(url_for('admin_welcome'))
+         else:
+            return redirect(url_for('welcome_page'))
       return render_template('login.html')
 
 @app.route('/sign_up_page' , methods=['GET', 'POST'])
@@ -108,9 +116,7 @@ def admin_page():
          else:
             flash('deletion unsuccesful', category='danger')
 
-
    return render_template('admin.html', query_items = query_items )
-
 
 @app.route('/Admbook_page', methods=['GET' , 'POST'])
 @login_required
@@ -321,8 +327,7 @@ def purchases_page():
 
       # Iterate over each item in the cart and retrieve the details of the associated vehicle
       for item in my_purchase:
-         vehicle = item.vehicle
-         
+         vehicle = item.vehicle         
          purchased_vehicle_details.append({
             'id': vehicle.id,
             'model': vehicle.model,
@@ -337,5 +342,6 @@ def purchases_page():
 @app.route('/logout')
 def logout_page():
    logout_user()
+   session.pop('user_id', None)
    flash(" logged out succesfully!", category='info')
    return redirect(url_for('login_page'))
