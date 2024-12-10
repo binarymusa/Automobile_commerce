@@ -20,15 +20,15 @@
     <body id="bodyclr">  
         {% if current_user.is_authenticated %}
             <nav class="navbar navbar-expand-md position-sticky sticky-top ">
-
-                <div class="container-fluid">
+                <div class="container-fluid" >
                     <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
                     <span class="navbar-toggler-icon rounded"></span>
                     </button>
                     
                     <a class="navbar-brand text-success d-lg-none d-sm-none" href="{{url_for('yard_page')}}">Automobile</a>
                    
-                    <div class="collapse navbar-collapse rounded text-black  font-monospace scrlnav" id="navbarNav" style="background-color: rgba(255, 255, 255, 0.92)">
+                    <div class="collapse navbar-collapse rounded text-black  font-monospace scrlnav" id="navbarNav" style="background: linear-gradient(to bottom,rgba(255, 255, 255, 0.82), transparent)
+                    ,linear-gradient(to top,rgba(255, 255, 255, 0.82), transparent);">
 
                         <div class="container col-7">
                             <ul class="navbar-nav p-1">
