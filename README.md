@@ -25,3 +25,7 @@ To execute the app, open the directory in the terminal and write the code:
 
 using a wsgi server such as gunicorn with nginx :
     gunicorn -w 4 -b 0.0.0.8000 run:app
+
+screenshot of the login page
+
+![Screenshot 1](screenshots/login_page.png
