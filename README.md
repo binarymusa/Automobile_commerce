@@ -43,10 +43,31 @@ This project is a web-based automobile e-commerce site built using the Flask fra
        gunicorn -w 4 -b 0.0.0.0:8000 run:app
        ```
        (Replace `8000` with your desired port.)
+       
+4. **clone the repository:**
+   ```bash
+   git clone https://github.com/binarymusa/Automobile_commerce.git
+
 
 **Screenshots:**
 
 **Login Page:**
 
 ![Screenshot 1](screenshots/login_page.png)
+
+**Signup Page:**
+
+![Screenshot 2](screenshots/signup_page.png)
+
+**Welcome Page:**
+
+![Screenshot 3](screenshots/welcome_page.png)
+
+**Yard Page:**
+
+![Screenshot 4](screenshots/yard2_page.png)
+
+**Cart Page:**
+
+![Screenshot 1](screenshots/cart_page.png)
 
