@@ -17,6 +17,7 @@
                             <tr >                            
                                 <th>Vehicle ID</th> 
                                 <th>Vehicle type</th>  
+                                <th>Vehicle units</th>
                                 <th>vehicle image</th>
                                 <th>Vehicle model</th>   
                                 <th>Vehicle price($)</th>                                                                                                                                  
@@ -29,6 +30,15 @@
                                 <tr class="text-center">
                                     <td>{{ vehicle.id }}</td>
                                     <td>{{ vehicle.car_type }}</td>  
+                                    <td>
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="">
+                                            +
+                                        </button> <br>
+                                        {{ vehicle.vehicle_units }} <br>                                       
+                                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="">
+                                            -
+                                        </button>
+                                    </td>
                                     <td><img class="w-50 h-50 rounded-2" src="{{vehicle.image_link}}"> </td>
                                     <td>{{ vehicle.model }}</td>
                                     <td>{{ vehicle.price }}</td>

@@ -100,6 +100,7 @@ def admin_page():
    if request.method == 'POST':
       user_to_delete = request.form.get('user_delete')
       vehicle_to_delete = request.form.get('vehicle_delete')
+      add_veh_unit = request.form.get()
 
       if user_to_delete:
         User.delete_user(user_to_delete)
