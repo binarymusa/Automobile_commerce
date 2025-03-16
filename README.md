@@ -69,10 +69,10 @@ This project is a web-based automobile e-commerce site built using the Flask fra
 
 **Cart Page:**
 
-![Screenshot 1](screenshots/cart_page.png)
+![Screenshot 5](screenshots/cart_page.png)
 
 **Purchases Page:**
 
-![Screenshot 1](screenshots/purchases_page.png)
+![Screenshot 6](screenshots/purchases_page.png)
 
 
