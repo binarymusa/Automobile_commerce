@@ -34,7 +34,9 @@ WHERE id IN ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
 -- SELECT * FROM importations
 
 SELECT * FROM vehicles
--- UPDATE vehicles SET price = 80000 WHERE id = 30
+-- DELETE FROM vehicles WHERE id = 42
+
+-- UPDATE vehicles SET vehicle_units = 2 WHERE id = 16
 -- SELECT * FROM vehicles WHERE 
 /* UPDATE vehicles 
 SET year = 
@@ -68,7 +70,7 @@ WHERE id IN ('30' , '31') */
 
 -- SELECT * FROM purchased_items
 -- SELECT * FROM purchased_items WHERE 
--- DELETE FROM purchased_items WHERE vehicle_id =
+-- DELETE FROM purchased_items WHERE id IN ('13', '15', '17', '18', '19', '20', '21', '22')
 
 /* 
 INSERT INTO importations (model, chasis_No, arrival_date, order_date)

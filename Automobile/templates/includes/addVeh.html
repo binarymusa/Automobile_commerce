@@ -7,8 +7,10 @@
 
 {% block content %}
     <div id="container2">
-        <a class="navbar-brand text-success" href="#">Automobile</a>
-        <h5 class="mt-2">Add vehicle form</h5>
+        <a class="navbar-brand " href="#">
+            <img class="rounded-3" src="static/images/Atmbico3.jpeg" alt="atm" style="width: 40px;height:40px">
+        </a>
+        <h5 class="mt-2">+ vehicle form</h5>
         <!-- onsubmit="return validateForm()" -->
         <form id="addvehForm" method="POST" action="{{url_for('add_vehicle_page')}}" >
             <div>

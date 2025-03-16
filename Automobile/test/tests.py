@@ -49,16 +49,18 @@ class TestRoutes(unittest.TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertIn(b'Location: http://127.0.0.1/', response.data)
 
+    def test_purcahse_page(self):
+        response = self.app.get('/mycart_page')
+        self.assertEqual(response.status_code, 302)
+        self.assertIn(b'Location: http://127.0.0.1/', response.data)
 
     def test_database_connection(self):
         # Test database connection using query
         """ user = User(username='duke', email_address='duke@hotmail.com', phone_no='0912345678', password_hash='12345')
         db.session.add()
         db.session.commit() """
-
         queried_user = User.query.filter_by(username='duke').first()
 
-        # adding, updating, Deleting items, query
         if not queried_user:
             new_user = User(username='duke', 
                             email_address='duke@hotmail.com', 
@@ -67,10 +69,8 @@ class TestRoutes(unittest.TestCase):
                             )
             db.session.add(new_user)
             db.session.commit()
-        
         else:
-            queried_user.email_addres = 'duke@gmail.com'
-
+            queried_user.email_address = 'duke@gmail.com'
             db.session.delete(queried_user)
             db.session.commit()
        

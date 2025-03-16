@@ -22,7 +22,8 @@
         display: none;    
     }
     #mainContent{
-        margin-left: auto;
+        /* margin-left: auto; */
+        margin-left: 25px;
     }
     
 }
@@ -34,8 +35,8 @@
         display: none;    
     }
     #mainContent {
-        transition: none; /* Disable transition on smaller viewports */
-        margin-left: auto; /* Reset margin for smaller screens */
+        transition: none; 
+        margin-left: auto; 
     }
 }
 @media (max-width: 760px) {

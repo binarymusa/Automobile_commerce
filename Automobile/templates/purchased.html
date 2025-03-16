@@ -2,13 +2,13 @@
 {% extends 'includes/base.html' %}
 
 {% block title %}
-   my_Purchases
+   Orders
 {% endblock %}
 
 {% block content %}
-
     <div class="container-fluid text-white pb-1 ">
-        <h4><strong>My Purchase</strong></>
+        
+        <h5><strong>Orders</strong></h5>
             <div class="m-2 mb-3 text-center">
                 <form method="post" action="{{url_for('purchases_page')}}">
                     <input type="hidden" name="remove_purchased_vehicle" >                
@@ -44,18 +44,18 @@
                             
                     </div> -->
 
-                    <div class="booking-cards my-2 mx-auto w-50 border" style="background-color: rgba(255, 255, 255, 0.42)" >
+                    <div class="booking-cards my-2 mx-auto border" style="width: 42%;" >
             
-                        <div class="booking-card text-center py-3">
+                        <div class="booking-card text-left py-3">
                             
-                            <p><strong>Date of purchase:</strong> <hr> </p>
-                            <p><strong>Signature:</strong> <hr> </p>
+                            <p><strong>Order Date:</strong> </p>
+                            <p><strong>Order status:</strong> Pending... </p>
                             <div >
                                <strong> vehicle details </strong>
-                                <details class="m-auto" style="cursor: pointer; width: fit-content;">
-                                    type: {{ item.car_type }} <br>
-                                    model: {{ item.model }} <br>                                    
-                                    description: {{ item.description }}
+                                <details class="m-auto rounded p-1 pe-2" style="cursor: pointer; width: fit-content;background-color: #444b5a ">
+                                    Brand: {{ item.car_type }} <br>
+                                    Model: {{ item.model }} <br>                                    
+                                    Description: {{ item.description }}
                                 </details>
                             </div>
     

@@ -5,45 +5,42 @@
 {% endblock %}
 
 {% block content %}
-<div class="payment-form mt-5 mb-5">
-    <a class="navbar-brand text-success" href="#">Automobile</a>
-    <h2>Transfer Funds</h2>
+    <div class="payment-form my-5 text-white m-auto p-1 rounded-1">
+        <a class="navbar-brand" href="#">
+            <img class="rounded-3" src="static/images/Atmbico3.jpeg" alt="atm" style="width: 40px;height:40px">
+        </a>
+        <h2>Transfer Funds</h2>
 
-    <form action="/process_payment" method="POST">
-        <p>Select bank of choice for fund transfer: </></p>
+        <form action="/process_payment" method="POST">
+            <p>Select bank:</p>
 
-        <div class="row p-2 mb-2 mx-1 rounded" >
-            <div class="col m-1 p-2 " >
-                <div class="form-check m-5">
-                    <input class="form-check-input bg-dark" type="radio" name="" value=""  id="textboxalter"> 
-                    <label class="form-check-label ">KCB</label><br>
+            <div class="row p-2 mb-2  rounded" >
+                <div class="col m-1 p-2 " >
+                    <div class="form-check ">
+                        <input class="form-check-input" type="radio" name="" value=""  id="textboxalter"> 
+                        <label class="form-check-label ">KCB</label><br>
+
+                        <input class="form-check-input" type="radio" name="" value=""  id="textboxalter"> 
+                        <label class="form-check-label ">Standard Chartered</label>
+                    </div>
+                                        
                 </div>
-                
-                <div class="form-check m-5">
-                    <input class="form-check-input bg-dark" type="radio" name="" value=""  id="textboxalter"> 
-                    <label class="form-check-label ">Standard Chartered</label>
+
+                <div class="col m-1 p-2">
+                    <div class="form-check ">
+                        <input class="form-check-input " type="radio" name="" value=""  id="textboxalter"> 
+                        <label class="form-check-label">Cooperative Bank</label><br>
+
+                        <input class="form-check-input " type="radio" name="" value=""  id="textboxalter"> 
+                        <label class="form-check-label">I&M Bank</label>
+                    </div>
                 </div>
-                
             </div>
+            
+            <button type="submit" class="w-50 mb-5" style="margin-left: 25%;">Next</button>
+        </form>
 
-            <div class="col m-1 p-2">
-                <div class="form-check m-5">
-                    <input class="form-check-input bg-dark" type="radio" name="" value=""  id="textboxalter"> 
-                <label class="form-check-label">Cooperative Bank</label><br>
-                </div>
-                
-                <div class="form-check m-5">
-                    <input class="form-check-input bg-dark" type="radio" name="" value=""  id="textboxalter"> 
-                    <label class="form-check-label">I&M Bank</label>
-                </div>
-               
-            </div>
-        </div>
-        
-        <button type="submit" class="w-50 mt-4" style="margin-left: 25%;">Next</button>
-    </form>
-
-</div>
+    </div>
 
 
     <!-- <div class="payment-form">

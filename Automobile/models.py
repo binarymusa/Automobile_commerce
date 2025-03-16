@@ -139,7 +139,8 @@ class Vehicles(db.Model):
         purchased_item = PurchasedItems(user_id=user.id, vehicle_id=self.id)
         # self.owner = user.id
         user.budget -= self.price
-        self.vehicle_units -= 1
+        if self.vehicle_units > 0:
+            self.vehicle_units -= 1
         db.session.add(purchased_item)
         db.session.commit()
     

@@ -19,13 +19,16 @@
     <body id="bodyclr">    
         {% if current_user.is_authenticated %}
             <nav class="navbar-expand pt-3 px-4">
-                <div class="container-fluid  p-2 rounded font-monospace row mx-auto" style="background-color: rgba(255, 255, 255, 0.92)">
+                <div class="container-fluid p-2 rounded font-monospace row mx-auto" style="background-color: #676d79">
                     <div class="col-10">
-                        <a class="navbar-brand text-success mx-2" href="#" style="font-size:20px" id="auto">Automobile</a>
+                        <a class="navbar-brand mx-2" href="#" style="font-size:20px" id="auto">
+                            <img class="rounded-3" src="static/images/Atmbico3.jpeg" alt="atm" style="width: 40px;height:40px">
+                            <!-- Automobile -->
+                        </a>
                     </div>
                     
-                    <div class="col text-dark">
-                        <strong class="text-success">User: </strong> {{current_user.username}}
+                    <div class="col text-white">
+                        <strong>User: </strong> {{current_user.username}}
                     </div>
                 </div>
 
@@ -33,9 +36,12 @@
         
         {% else %}
             <nav class="navbar-expand pt-3 px-4" >
-                <div class="container-fluid  p-2 rounded font-monospace row mx-auto" style="background-color: rgba(255, 255, 255, 0.92) ">
-                    <div class="col-10">
-                        <a class="navbar-brand text-success mx-2" href="#" style="font-size:20px" id="auto">Automobile</a>
+                <div class="container-fluid  p-2 rounded font-monospace row mx-auto" style="background-color: #676d79">
+                    <div class="col-10">                        
+                        <a class="navbar-brand mx-2" href="#" style="font-size:20px" id="auto">
+                            <img class="rounded-3" src="static/images/Atmbico3.jpeg" alt="atm" style="width: 40px;height:40px">
+                            <!-- Automobile -->
+                        </a>
                     </div>
                 </div>
 

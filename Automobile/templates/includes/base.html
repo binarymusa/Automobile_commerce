@@ -20,27 +20,27 @@
     <body id="bodyclr">  
         {% if current_user.is_authenticated %}
             <nav class="navbar navbar-expand-md position-sticky sticky-top ">
-                <div class="container-fluid" >
+                <div class="container-fluid bg-md-danger">
                     <button class="navbar-toggler bg-success" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
-                    <span class="navbar-toggler-icon rounded"></span>
+                        <span class="navbar-toggler-icon rounded"></span>
                     </button>
                     
-                    <a class="navbar-brand text-success d-lg-none d-sm-none" href="{{url_for('yard_page')}}">Automobile</a>
+                    <!-- <a class="navbar-brand text-success d-lg-none d-sm-none" href="{{url_for('yard_page')}}">Automobile</a> -->
                    
-                    <div class="collapse navbar-collapse rounded text-black  font-monospace scrlnav" id="navbarNav" style="background: linear-gradient(to bottom,rgba(255, 255, 255, 0.82), transparent)
-                    ,linear-gradient(to top,rgba(255, 255, 255, 0.82), transparent);">
-
-                        <div class="container col-7">
-                            <ul class="navbar-nav p-1">
-
-                                <a class="navbar-brand text-success " href="{{url_for('yard_page')}}">Automobile</a>                                                     
+                    <div class="collapse navbar-collapse rounded text-black font-monospace scrlnav text-white" id="navbarNav" style="background-color: #676d79">
+                        <div class="container col-lg-7">
+                            <ul class="navbar-nav p-lg-1">                               
+                                <a class="navbar-brand text-success " href="{{url_for('yard_page')}}">
+                                    <img class="rounded-3" src="static/images/Atmbico3.jpeg" alt="atm" style="width: 40px;height:40px">
+                                    <!-- Automobile -->
+                                </a>                                                     
                             </ul>
                         </div>
 
                         <div class="col">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link rounded bg-dark-subtle" href="" title="Account">                                    
+                                    <a class="nav-link rounded text-white" href="" title="Account">                                    
                                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="#ac8626" class="bi bi-coin" viewBox="0 0 16 16">
                                             <path d="M5.5 9.511c.076.954.83 1.697 2.182 1.785V12h.6v-.709c1.4-.098 2.218-.846 2.218-1.932 0-.987-.626-1.496-1.745-1.76l-.473-.112V5.57c.6.068.982.396 1.074.85h1.052c-.076-.919-.864-1.638-2.126-1.716V4h-.6v.719c-1.195.117-2.01.836-2.01 1.853 0 .9.606 1.472 1.613 1.707l.397.098v2.034c-.615-.093-1.022-.43-1.114-.9zm2.177-2.166c-.59-.137-.91-.416-.91-.836 0-.47.345-.822.915-.925v1.76h-.005zm.692 1.193c.717.166 1.048.435 1.048.91 0 .542-.412.914-1.135.982V8.518z"/>
                                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -54,21 +54,21 @@
 
                         <div>
                             <a class="btn rounded" style="cursor: pointer;" id="daynight" >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-sun" viewBox="0 0 16 16" title="day">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-sun" viewBox="0 0 16 16" title="day">
                                     <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"/>
                                     <title>Light mode</title>
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-moon hidden" viewBox="0 0 16 16" title="night">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-moon hidden" viewBox="0 0 16 16" title="night">
                                     <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278M4.858 1.311A7.27 7.27 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.32 7.32 0 0 0 5.205-2.162q-.506.063-1.029.063c-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286"/>
                                     <title>Dark mode</title>
                                 </svg>
                             </a>
                         </div>
                         
-                        <div class="col-2 bg-dark-subtle rounded-start">
-                            <ul class="navbar-nav p-1 d-flex justify-content-evenly" >
+                        <div class="col-lg-2">
+                            <ul class="navbar-nav p-1  justify-content-evenly" >
                                 <li class="nav-item" >
-                                    <a class="nav-link rounded" href="{{url_for('yard_page')}}" title="Yard" style="background-color: #69686883;">
+                                    <a class="nav-link rounded" href="{{url_for('yard_page')}}" title="Yard" style="background-color: #a09f9f83;">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ffffffbb" class="bi bi-car-front" viewBox="0 0 16 16">
                                             <path d="M4 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0m10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM4.862 4.276 3.906 6.19a.51.51 0 0 0 .497.731c.91-.073 2.35-.17 3.597-.17s2.688.097 3.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 10.691 4H5.309a.5.5 0 0 0-.447.276"/>
                                             <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM4.82 3a1.5 1.5 0 0 0-1.379.91l-.792 1.847a1.8 1.8 0 0 1-.853.904.8.8 0 0 0-.43.564L1.03 8.904a1.5 1.5 0 0 0-.03.294v.413c0 .796.62 1.448 1.408 1.484 1.555.07 3.786.155 5.592.155s4.037-.084 5.592-.155A1.48 1.48 0 0 0 15 9.611v-.413q0-.148-.03-.294l-.335-1.68a.8.8 0 0 0-.43-.563 1.8 1.8 0 0 1-.853-.904l-.792-1.848A1.5 1.5 0 0 0 11.18 3z"/>
@@ -78,13 +78,11 @@
 
                                 <li class="nav-item cust-m2">
                                     <div class="position-relative">
-                                        <div class=" position-absolute top-1 start-60 rounded-circle translate-middle text-dark bg-white p-1"> {{ length_of_list }}</div>
+                                        <div class=" position-absolute top-1 start-60  translate-middle p-1"> {{ length_of_list }}</div>
                                         <a class="nav-link bg-success rounded" href="{{url_for('cart_page')}}" title="Cart">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="antiquewhite" class="bi bi-cart" viewBox="0 0 16 16">
                                                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-
                                             </svg>
-                                            
                                         </a>
                                     </div>                                    
                                 </li>
@@ -100,8 +98,8 @@
                             </ul>
                         </div>
 
-                        <div class="col bg-dark-subtle rounded-end">
-                            <ul class="navbar-nav p-1 d-flex justify-content-end">
+                        <div class="col rounded-end">
+                            <ul class="navbar-nav p-1 d-lg-flex justify-content-lg-end">
                                 <li class="nav-item cust-m">
                                     <a class="nav-link bg-danger rounded" href="{{url_for('logout_page')}}" title="Logout">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="antiquewhite" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
@@ -138,7 +136,7 @@
                     
                                 <li class="nav-item">
                                 <a class="nav-link " href="{{url_for('yard_page')}}">
-                                    <strong>Market</strong>
+                                    <strong>Yard</strong>
                                     </a>
                                 </li>
                             </ul>
@@ -187,46 +185,42 @@
         {% endwith %}
         
         <main class="font-monospace">
-            {% block content %}
+            {% block content %} {% endblock %}
 
-            {% endblock %}
-
-            <footer>
-                <div class="container-fluid row mt-3 mx-auto rounded" style="width: 97.1% ;background: linear-gradient(to right, #ffffff38, transparent)" >
-                    <div class="col-lg-3 m-1 pt-">
-                        <ul class="my-auto" id="foot-links" >                        
-                            <li ><a href="{{url_for('yard_page')}}">Yard</a></li>
-                            <li ><a href="{{url_for('cart_page')}}">Cart</a></li>
-                            <li ><a href="{{url_for('purchases_page')}}">Purchases</a></li>
-                        </ul>
-
-                    </div>
-                    <div class="col-lg-3 pt-1">
-                        <a class="text-decoration-none text-white" id="" href="#" >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
-                            </svg>
-                            finicky9819@gmail.com
-                        </a>
-                    </div>
-                    <div class="col-lg-1 pt-1">
-                        <a href="https://github.com/binarymusa" class="text-decoration-none text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
-                            </svg>
-
-                        </a>                      
-                    </div>
-                    <div class="col-3 m-1 pt-1 text-center text-md-end">
-                        <a class="text-decoration-none text-white" id="" href="#" >
-                            &copy; PrimalTitan 2024 
-                        </a>                       
-                    </div>
-                </div>
-            
-            </footer>
+           
 
         </main>
+        <footer class="row p-3" style="background: #353e4e; transform: " >
+            <!-- <div class="container-fluid row mt-3 mx-auto rounded" style="background: #353e4e" > -->
+                <div class="col-lg-3 m-1">
+                    <ul class="my-auto" id="foot-links" >                        
+                        <li ><a href="{{url_for('yard_page')}}">Yard</a></li>
+                        <li ><a href="{{url_for('cart_page')}}">Cart</a></li>
+                        <li ><a href="{{url_for('purchases_page')}}">Purchases</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3">
+                    <a class="text-decoration-none text-white" id="" href="#" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z"/>
+                        </svg>
+                        finicky9819@gmail.com
+                    </a>
+                </div>
+                <div class="col-lg-1">
+                    <a href="https://github.com/binarymusa" class="text-decoration-none text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"/>
+                        </svg>
+
+                    </a>                      
+                </div>             
+                <div class="col-lg-3 m-1 text-center ">
+                    <a class="text-decoration-none text-white" id="" href="#" >
+                        &copy; PrimalTitan 2024 
+                    </a>                       
+                </div>    
+        </footer>
 
         <script src="{{ url_for('static', filename='javascript/main.js') }}"></script>
         <script src="{{ url_for('static', filename='javascript/message.js') }}"></script>

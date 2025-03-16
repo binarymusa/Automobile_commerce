@@ -8,18 +8,18 @@
 {% block content %}
     {% if length_of_list  == 0 %}
         <div class="container-fluid text-white pb-1 font-monospace" >
-            <h4><strong>My Cart</strong></>
+            <h5><strong>My Cart</strong></h5>
             <div class="text-center text-danger" >No items</div>
         
     {% else %}
         <div class="container-fluid text-white pb-1 font-monospace" >        
-            <h4><strong>My Cart</strong></>
+            <h5><strong>My Cart</strong></h5>
                 <div class="row p-1 mx-auto" style="width: 95%;">
                     {% for item in cart_vehicle_details %}
                         {% include 'includes/cart_modal.html' %}
                                                             
                         <div class="col-md-4 mx-auto">
-                            <div class="booking-cards mb-1 text-white rounded" style="border: 2px dotted " >
+                            <div class="booking-cards mb-1 text-white rounded" style="border: 1px solid " >
                                 <div class="m-1" style="height: 200px;">
                                     <img class="w-100 h-100" src="{{item.car_image}}">
                                 </div>

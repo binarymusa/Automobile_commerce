@@ -34,8 +34,9 @@ def login_page():
       user_id = session.get('user_id')
       if user_id:
          # User is logged in
-         if check_user.role and check_user.role.role_name == 'Admin':
-               return redirect(url_for('admin_welcome'))
+         check_user = User.query.get(user_id)
+         if check_user and check_user.role and check_user.role.role_name == 'Admin':
+            return redirect(url_for('admin_welcome'))
          else:
             return redirect(url_for('welcome_page'))
       return render_template('login.html')
@@ -143,7 +144,10 @@ def add_vehicle_page():
          reg_exp = '^\d{4}$'
          try:
             if (not(re.search(reg_exp, items[6]))):
-               flash('invalid year or car units!',category='danger')
+               flash('invalid vehile year!',category='danger')
+               return(redirect(url_for('add_vehicle_page')))
+            if  int(items[5])<=0:
+               flash('invalid vehicle number', category='danger')
                return(redirect(url_for('add_vehicle_page')))
             else:
                new_vehicle = Vehicles(
