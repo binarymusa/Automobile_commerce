@@ -1,28 +1,34 @@
 
-""" contains links to database connections, mail client.
-    ie.,mysql
-    ie.gmail, yahoo,
-    also hold the secret key used in form validations
+""" 
+contains links to database connections, mail client.
+ie.,mysql
+ie.gmail, yahoo,
+also hold the secret key used in form validations
 """
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 class Config:
-    SECRET_KEY = 'c7c52ced176b65114f3e211f'
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://MUSTAFA:5m9l<18>_X!@localhost/Automobile'
-    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+    try:
+        SECRET_KEY = os.environ.get('SECRET_KEY')
+        SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI')
+        SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 
-    SESSION_TYPE = 'filesystem'
-    SESSION_PERMANENT = False 
-    SESSION_COOKIE_NAME = 'user_session' 
-    SESSION_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SECURE = True
+        SESSION_TYPE = 'filesystem'
+        SESSION_PERMANENT = False 
+        SESSION_COOKIE_NAME = 'user_session' 
+        SESSION_COOKIE_HTTPONLY = True
+        SESSION_COOKIE_SECURE = True
 
-    MAIL_SERVER = 'smtp.google.com'
-    MAIL_PORT = 587    
-    MAIL_USE_TLS = True
-    MAIL_USE_SSL = True
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+        MAIL_SERVER = 'smtp.google.com'
+        MAIL_PORT = 587    
+        MAIL_USE_TLS = True
+        MAIL_USE_SSL = True
+        MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+        MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    except Exception as e:
+        print(e)
 
 
 

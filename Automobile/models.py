@@ -4,7 +4,6 @@ from Automobile import bcrypt
 from flask_login import UserMixin
 from flask import flash
 
-# tells Flask-Login that the function (load_user) should be used to retrieve a user object when a user is logged in and their session needs to be managed.
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))

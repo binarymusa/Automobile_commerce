@@ -33,7 +33,7 @@ WHERE id IN ('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
 
 -- SELECT * FROM importations
 
-SELECT * FROM vehicles
+-- SELECT * FROM vehicles
 -- DELETE FROM vehicles WHERE id = 42
 
 -- UPDATE vehicles SET vehicle_units = 2 WHERE id = 16
@@ -49,7 +49,7 @@ SET year =
     END
 WHERE id IN ('30' , '31') */
 
--- SELECT * FROM user
+SELECT * FROM user
 -- SELECT * FROM user WHERE user_role = 1
 -- UPDATE user SET user_role = 1 WHERE id = 29
 -- DELETE FROM user WHERE id = 38

@@ -14,4 +14,4 @@ flask-restful
 flask-script
 flask-marshmallow
 flask-session
-
+python-dotenv
