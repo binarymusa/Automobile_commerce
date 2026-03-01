@@ -54,8 +54,7 @@ class User(db.Model, UserMixin):
     # static methods don't have access to the instance (self) or class (cls) objects.
     @staticmethod
     def Admin_budget():
-        users = User.query.filter_by(user_role=1).all()
-        
+        users = User.query.filter_by(user_role=1).all()       
         if users:
             for user in users:
                 user.budget = 0
@@ -67,8 +66,7 @@ class User(db.Model, UserMixin):
     # method to dissasociate a user with a car, then deleting them
     @staticmethod
     def delete_user(user_id):
-        user = User.query.get(user_id)
-        
+        user = User.query.get(user_id)        
         if user :
             # Subquery to select vehicle IDs owned by the user
             # A subquery is simply a nested query. can be used in another query
@@ -80,14 +78,13 @@ class User(db.Model, UserMixin):
             Cart.query.filter(Cart.id.in_(subquery)).delete(synchronize_session=False)
             PurchasedItems.query.filter(PurchasedItems.id.in_(subquery)).delete(synchronize_session=False)
 
-            # Now you can safely delete the user
+            # safely delete the user
             db.session.delete(user)
             db.session.commit()
             return True
-        else:
-            return False
+        return False
 
-# User roles database
+# User roles db
 class Roles(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     role_name = db.Column(db.String(length=30), nullable=False, unique=True)

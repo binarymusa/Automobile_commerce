@@ -87,7 +87,6 @@ def admin_welcome():
 @app.route('/Admin_page', methods=['GET' , 'POST'])
 @login_required
 def admin_page():   
-   # '|' , or_ - represents 'or' logical operator
    # check for users with roles other than 1 and null roles and pass them to query for display
    # users = User.query.filter((User.user_role != 1) | (User.user_role == None)).all()
    query_items = (
@@ -100,7 +99,7 @@ def admin_page():
    if request.method == 'POST':
       user_to_delete = request.form.get('user_delete')
       vehicle_to_delete = request.form.get('vehicle_delete')
-      add_veh_unit = request.form.get()
+      # add_veh_unit = request.form.get()
 
       if user_to_delete:
         User.delete_user(user_to_delete)
@@ -212,9 +211,7 @@ def yard_page():
 def filtered_page():   
    if request.method == 'POST': 
       filtered = (
-         request.form['model'], 
-         request.form['price'], 
-         # request.form['price2'],
+         request.form['model'], request.form['price'],  # request.form['price2'],
          request.form['year']
       )
      
@@ -248,16 +245,15 @@ def filtered_page():
 @app.route('/mycart_page', methods=['GET', 'POST'])
 @login_required
 def cart_page():
-
    if request.method == 'GET':
       my_cart = Cart.query.filter_by(user_id=current_user.id).all()
       
-      # Initialize a list to store the details of each vehicle in the cart
+      #  list to store vehicle details in cart
       cart_vehicle_details = []
 
       for item in my_cart:         
          vehicle = item.vehicle  # Access the associated vehicle object via the relationship
-         # Add the details of the vehicle to the list
+
          cart_vehicle_details.append({
             'id': vehicle.id,
             'model': vehicle.model,
@@ -324,23 +320,20 @@ def payment_page():
 @app.route('/my_purchases', methods=['GET', 'POST'])
 @login_required
 def purchases_page():
-   if request.method == 'GET':
-      my_purchase = PurchasedItems.query.filter_by(user_id=current_user.id).all()
-      
-      # Initialize a list to store the details of each vehicle in the cart
-      purchased_vehicle_details = []
+   # if request.method == 'GET':
+   my_purchase = PurchasedItems.query.filter_by(user_id=current_user.id).all()
+   purchased_vehicle_details = []
 
-      # Iterate over each item in the cart and retrieve the details of the associated vehicle
-      for item in my_purchase:
-         vehicle = item.vehicle         
-         purchased_vehicle_details.append({
-            'id': vehicle.id,
-            'model': vehicle.model,
-            'price': vehicle.price,
-            'description': vehicle.description,
-            'car_type': vehicle.car_type,
-            'car_image': vehicle.image_link
-         })
+   for item in my_purchase:
+      vehicle = item.vehicle         
+      purchased_vehicle_details.append({
+         'id': vehicle.id,
+         'model': vehicle.model,
+         'price': vehicle.price,
+         'description': vehicle.description,
+         'car_type': vehicle.car_type,
+         'car_image': vehicle.image_link
+      })
    
    return render_template('purchased.html', purchased_vehicle_details=purchased_vehicle_details)
 

@@ -1,15 +1,23 @@
 # Virtual environment
-stdstack/
-migrations/
-
-# Environment files
-.env
+Autom
+migrations
+*.env
 instance/
+*venv/
+*.venv
+**/*venv/
+*env/
+**/*env/
 
-# Python artifacts
+# runtime files
 __pycache__/
+*/__pycache__
 *.py[cod]
 *$py.class
+
+# db connections , sessions
+*.sql
+flask_session
 
 # IDE specific files
 .idea/
